@@ -1,0 +1,149 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{AC3C1C8A-F628-4F72-80B8-7FDB625DFE96}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>mprTools</RootNamespace>
+    <AssemblyName>mprTools_2015</AssemblyName>
+    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>..\..\..\..\..\..\..\ModPlus\Functions\Revit\mprTools\</OutputPath>
+    <DefineConstants>TRACE;DEBUG;R2015</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>..\..\..\..\..\..\..\ModPlus\Functions\Revit\mprTools\</OutputPath>
+    <DefineConstants>TRACE;R2015</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="MahApps.Metro">
+      <HintPath>..\..\..\..\..\..\..\ModPlus\Extensions\MahApps.Metro.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="ModPlusAPI">
+      <HintPath>..\..\..\..\..\..\..\ModPlus\Extensions\ModPlusAPI.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="PresentationCore" />
+    <Reference Include="PresentationFramework" />
+    <Reference Include="RevitAPI">
+      <HintPath>C:\_Revit dlls\2015\RevitAPI.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="RevitAPIUI">
+      <HintPath>C:\_Revit dlls\2015\RevitAPIUI.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Xaml" />
+    <Reference Include="WindowsBase" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Application\SelectionFilters\StructuralFramingSelectionFilter.cs" />
+    <Compile Include="Application\ToolsApp.cs" />
+    <Compile Include="Commands\CategoryOnOff.cs" />
+    <Compile Include="Commands\CopingDistance\CopingDistanceCommand.cs" />
+    <Compile Include="Commands\CopingDistance\CopingDistanceSettings.xaml.cs">
+      <DependentUpon>CopingDistanceSettings.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Commands\CopingDistance\CopingDistanceUpdater.cs" />
+    <Compile Include="Interface.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <Page Include="Commands\CopingDistance\CopingDistanceSettings.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Icons\CopingDistance_32x32.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\mprTools_32x32.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Icons\CategoryOnOff\CategoryOff_16x16.png" />
+    <Resource Include="Icons\CategoryOnOff\CategoryOn_16x16.png" />
+    <Resource Include="Icons\CategoryOnOff\WallsOff_16x16.png" />
+    <Resource Include="Icons\CategoryOnOff\WallsOn_16x16.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Icons\CategoryOnOff\WindowsOff_16x16.png" />
+    <Resource Include="Icons\CategoryOnOff\WindowsOn_16x16.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Icons\CategoryOnOff\DoorsOff_16x16.png" />
+    <Resource Include="Icons\CategoryOnOff\DoorsOn_16x16.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Icons\CategoryOnOff\TagsOff_16x16.png" />
+    <Resource Include="Icons\CategoryOnOff\TagsOn_16x16.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Icons\CategoryOnOff\FloorsOff_16x16.png" />
+    <Resource Include="Icons\CategoryOnOff\FloorsOn_16x16.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Icons\CategoryOnOff\ColumnsOff_16x16.png" />
+    <Resource Include="Icons\CategoryOnOff\ColumnsOn_16x16.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Icons\CategoryOnOff\GridsOff_16x16.png" />
+    <Resource Include="Icons\CategoryOnOff\GridsOn_16x16.png" />
+    <Resource Include="Icons\CategoryOnOff\LevelsOff_16x16.png" />
+    <Resource Include="Icons\CategoryOnOff\LevelsOn_16x16.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Icons\CategoryOnOff\RampsOff_16x16.png" />
+    <Resource Include="Icons\CategoryOnOff\RampsOn_16x16.png" />
+    <Resource Include="Icons\CategoryOnOff\StairsOff_16x16.png" />
+    <Resource Include="Icons\CategoryOnOff\StairsOn_16x16.png" />
+    <Resource Include="Icons\CategoryOnOff\StairsRailingOff_16x16.png" />
+    <Resource Include="Icons\CategoryOnOff\StairsRailingOn_16x16.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Icons\CategoryOnOff\RoofsOff_16x16.png" />
+    <Resource Include="Icons\CategoryOnOff\RoofsOn_16x16.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Icons\CategoryOnOff\CeilingsOff_16x16.png" />
+    <Resource Include="Icons\CategoryOnOff\CeilingsOn_16x16.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Icons\CategoryOnOff\ElevationsOff_16x16.png" />
+    <Resource Include="Icons\CategoryOnOff\ElevationsOn_16x16.png" />
+    <Resource Include="Icons\CategoryOnOff\SectionsOff_16x16.png" />
+    <Resource Include="Icons\CategoryOnOff\SectionsOn_16x16.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Icons\CategoryOnOff\ComponentsOff_16x16.png" />
+    <Resource Include="Icons\CategoryOnOff\ComponentsOn_16x16.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Icons\CategoryOnOff\ReferencePlanesOff_16x16.png" />
+    <Resource Include="Icons\CategoryOnOff\ReferencePlanesOn_16x16.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Icons\CategoryOnOff\StructuralFramingOff_16x16.png" />
+    <Resource Include="Icons\CategoryOnOff\StructuralFramingOn_16x16.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Icons\GridsMode_16x16.png" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+</Project>
