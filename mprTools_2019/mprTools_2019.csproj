@@ -31,12 +31,12 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="MahApps.Metro">
-      <HintPath>..\..\..\..\..\..\..\ModPlus\Extensions\MahApps.Metro.dll</HintPath>
-      <Private>False</Private>
-    </Reference>
     <Reference Include="ModPlusAPI">
       <HintPath>..\..\..\..\..\..\..\ModPlus\Extensions\ModPlusAPI.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="ModPlusStyle">
+      <HintPath>..\..\..\..\ModPlus\Extensions\ModPlusStyle.dll</HintPath>
       <Private>False</Private>
     </Reference>
     <Reference Include="PresentationCore" />
@@ -72,6 +72,9 @@
     </Compile>
     <Compile Include="..\mprTools_2015\Commands\CopingDistance\CopingDistanceUpdater.cs">
       <Link>Commands\CopingDistance\CopingDistanceUpdater.cs</Link>
+    </Compile>
+    <Compile Include="..\mprTools_2015\Properties\AssemblyInfoCommon.cs">
+      <Link>Properties\AssemblyInfoCommon.cs</Link>
     </Compile>
     <Compile Include="..\mprtools_2016\commands\gridsmode\GridsModeCommand.cs">
       <Link>Commands\GridsMode\GridsModeCommand.cs</Link>
