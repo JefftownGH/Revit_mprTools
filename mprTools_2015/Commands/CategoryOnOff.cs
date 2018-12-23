@@ -375,6 +375,8 @@ namespace mprTools.Commands
         {
             try
             {
+                if (HasTemplateInCurrentView(commandData))
+                    return Result.Cancelled;
                 var doc = commandData.Application.ActiveUIDocument.Document;
                 Category category = doc.Settings.Categories.get_Item(cat);
                 if (category?.get_Visible(doc.ActiveView) == true)
@@ -401,6 +403,8 @@ namespace mprTools.Commands
         {
             try
             {
+                if (HasTemplateInCurrentView(commandData))
+                    return Result.Cancelled;
                 var doc = commandData.Application.ActiveUIDocument.Document;
                 using (var tr = new Transaction(doc, Language.GetItem(LangItem, "Hide") + " " + Language.GetItem(LangItem, name)))
                 {
@@ -429,6 +433,8 @@ namespace mprTools.Commands
         {
             try
             {
+                if (HasTemplateInCurrentView(commandData))
+                    return Result.Cancelled;
                 var doc = commandData.Application.ActiveUIDocument.Document;
                 using (var tr = new Transaction(doc, Language.GetItem(LangItem, "Hide") + " " + Language.GetItem(LangItem, name)))
                 {
@@ -463,6 +469,8 @@ namespace mprTools.Commands
         {
             try
             {
+                if (HasTemplateInCurrentView(commandData))
+                    return Result.Cancelled;
                 var doc = commandData.Application.ActiveUIDocument.Document;
                 using (var tr = new Transaction(doc, Language.GetItem(LangItem, "Hide") + " " + Language.GetItem(LangItem, name)))
                 {
@@ -497,6 +505,8 @@ namespace mprTools.Commands
         {
             try
             {
+                if (HasTemplateInCurrentView(commandData))
+                    return Result.Cancelled;
                 var doc = commandData.Application.ActiveUIDocument.Document;
                 Category category = doc.Settings.Categories.get_Item(cat);
                 if (category?.get_Visible(doc.ActiveView) == false)
@@ -523,6 +533,8 @@ namespace mprTools.Commands
         {
             try
             {
+                if (HasTemplateInCurrentView(commandData))
+                    return Result.Cancelled;
                 var doc = commandData.Application.ActiveUIDocument.Document;
                 using (var tr = new Transaction(doc, Language.GetItem(LangItem, "Hide") + " " + Language.GetItem(LangItem, name)))
                 {
@@ -551,6 +563,8 @@ namespace mprTools.Commands
         {
             try
             {
+                if (HasTemplateInCurrentView(commandData))
+                    return Result.Cancelled;
                 var doc = commandData.Application.ActiveUIDocument.Document;
                 using (var tr = new Transaction(doc, Language.GetItem(LangItem, "Show") + " " + Language.GetItem(LangItem, name)))
                 {
@@ -586,6 +600,8 @@ namespace mprTools.Commands
         {
             try
             {
+                if (HasTemplateInCurrentView(commandData))
+                    return Result.Cancelled;
                 var doc = commandData.Application.ActiveUIDocument.Document;
                 using (var tr = new Transaction(doc, Language.GetItem(LangItem, "Show") + " " + Language.GetItem(LangItem, name)))
                 {
@@ -611,6 +627,23 @@ namespace mprTools.Commands
                 ExceptionBox.Show(exception);
                 return Result.Failed;
             }
+        }
+
+        /// <summary>
+        /// Проверка текущего вида на наличие примененного шаблона вида
+        /// </summary>
+        /// <param name="commandData"></param>
+        /// <returns></returns>
+        private static bool HasTemplateInCurrentView(ExternalCommandData commandData)
+        {
+            var view = commandData.View;
+            if (!view.IsTemplate && view.ViewTemplateId != ElementId.InvalidElementId)
+            {
+                MessageBox.Show(Language.GetItem(LangItem, "m1"), MessageBoxIcon.Close);
+                return true;
+            }
+
+            return false;
         }
     }
 }
