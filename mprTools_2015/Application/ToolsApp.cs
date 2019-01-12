@@ -74,7 +74,7 @@ namespace mprTools.Application
                 panel = application.CreateRibbonPanel("ModPlus", Language.TryGetCuiLocalGroupName("Утилиты"));
             // interface of current modplus function
             var intF = new Interface();
-            var assemby = Assembly.GetExecutingAssembly().Location;
+            var assembly = Assembly.GetExecutingAssembly().Location;
 
             // grids mode
             var pbdGrids = new PushButtonData(
@@ -87,6 +87,20 @@ namespace mprTools.Application
                 Image = new BitmapImage(
                     new Uri("pack://application:,,,/mprTools_" + intF.AvailProductExternalVersion +
                             ";component/Icons/GridsMode_16x16.png"))
+            };
+
+            // Rebars outside host
+            var pbdRebarsOutsideHost = new PushButtonData(
+                "Rebars outside host",
+                ConvertLName(Language.GetItem(LangItem, "h17")),
+                Assembly.GetExecutingAssembly().Location,
+                "mprTools.Commands.RebarsWithoutHost"
+                )
+            {
+                ToolTip = Language.GetItem(LangItem, "h18"),
+                Image = new BitmapImage(
+                    new Uri("pack://application:,,,/mprTools_" + intF.AvailProductExternalVersion +
+                            ";component/Icons/RebarsWithoutHost_16x16.png"))
             };
 
             // CategoryOnOff
@@ -108,13 +122,15 @@ namespace mprTools.Application
             };
             // create stacked panel
 #if R2015
+            var stackedItems = panel.AddStackedItems(pbdRebarsOutsideHost, pulldownButtonDataOn, pulldownButtonDataOff);
+            const int onIndex = 1;
+            const int offIndex = 2;
+#else
             var stackedItems = panel.AddStackedItems(pulldownButtonDataOn, pulldownButtonDataOff);
             const int onIndex = 0;
             const int offIndex = 1;
-#else
-            var stackedItems = panel.AddStackedItems(pbdGrids, pulldownButtonDataOn, pulldownButtonDataOff);
-            const int onIndex = 1;
-            const int offIndex = 2;
+
+            panel.AddStackedItems(pbdGrids, pbdRebarsOutsideHost);
 #endif
 
             // add items to pulldata button
@@ -132,7 +148,7 @@ namespace mprTools.Application
                     if (c.Equals("Separator"))
                         pdbOn.AddSeparator();
                     else
-                        pdbOn.AddPushButton(GetCategoryOnOffPushButtonData(c, 0, intF, assemby));
+                        pdbOn.AddPushButton(GetCategoryOnOffPushButtonData(c, 0, intF, assembly));
                 });
             }
 
@@ -143,7 +159,7 @@ namespace mprTools.Application
                     if (c.Equals("Separator"))
                         pdbOff.AddSeparator();
                     else
-                        pdbOff.AddPushButton(GetCategoryOnOffPushButtonData(c, 1, intF, assemby));
+                        pdbOff.AddPushButton(GetCategoryOnOffPushButtonData(c, 1, intF, assembly));
                 });
             }
 
@@ -151,7 +167,7 @@ namespace mprTools.Application
             var copingDistancePushButtonData = new PushButtonData(
                 "Coping Distance",
                 ConvertLName(Language.GetItem(LangItem, "h1")),
-                assemby,
+                assembly,
                 "mprTools.Commands.CopingDistance.CopingDistanceCommand")
             {
                 LargeImage = new BitmapImage(new Uri("pack://application:,,,/mprTools_" +
@@ -159,6 +175,7 @@ namespace mprTools.Application
                                                      ";component/Icons/CopingDistance_32x32.png")),
                 ToolTip = Language.GetItem(LangItem, "h7")
             };
+
             // add to panel
             panel.AddItem(copingDistancePushButtonData);
 

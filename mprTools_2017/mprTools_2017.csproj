@@ -73,6 +73,9 @@
     <Compile Include="..\mprTools_2015\Commands\CopingDistance\CopingDistanceUpdater.cs">
       <Link>Commands\CopingDistance\CopingDistanceUpdater.cs</Link>
     </Compile>
+    <Compile Include="..\mprTools_2015\Commands\RebarsWithoutHost.cs">
+      <Link>Commands\RebarsWithoutHost.cs</Link>
+    </Compile>
     <Compile Include="..\mprTools_2015\Properties\AssemblyInfoCommon.cs">
       <Link>Properties\AssemblyInfoCommon.cs</Link>
     </Compile>
@@ -259,6 +262,11 @@
   <ItemGroup>
     <Resource Include="..\mprTools_2016\Icons\GridsMode_16x16.png">
       <Link>Icons\GridsMode_16x16.png</Link>
+    </Resource>
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="..\mprTools_2015\Icons\RebarsWithoutHost_16x16.png">
+      <Link>Icons\RebarsWithoutHost_16x16.png</Link>
     </Resource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
