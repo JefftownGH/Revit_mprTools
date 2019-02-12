@@ -82,18 +82,27 @@
                         else
                         {
                             List<Solid> hostSolids = GetHostSolids(hostDictionary, hostId, doc);
+
+#if R2015 || R2016
+                            var rebarCurves = rebar.GetCenterlineCurves(false, false, false).ToList();
+#else
+                            var rebarCurves = 
+                                rebar.GetCenterlineCurves(false, false, false, MultiplanarOption.IncludeAllMultiplanarCurves, 0)
+                                    .ToList();
+#endif
                             if (rebar.LayoutRule == RebarLayoutRule.Single)
                             {
-                                if (!IntersectWithSolids(GetCurves(rebar), hostSolids))
+                                if (!IntersectWithSolids(rebarCurves, hostSolids))
                                     outsideHostRebars.Add(rebar.Id);
                             }
                             else
                             {
-                                if (HasOutsideCurves(GetCurves(rebar), hostSolids))
+                                if (HasOutsideCurves(rebarCurves, hostSolids))
                                     outsideHostRebars.Add(rebar.Id);
                             }
                         }
                     }
+
                     foreach (RebarInSystem rebarInSystem in rebarInSystems)
                     {
                         var hostId = rebarInSystem.GetHostId();
@@ -101,8 +110,9 @@
                             noHostRebars.Add(rebarInSystem.Id);
                         else
                         {
+                            var systemCurves = rebarInSystem.GetCenterlineCurves(false, false, false).ToList();
                             List<Solid> hostSolids = GetHostSolids(hostDictionary, hostId, doc);
-                            if (HasOutsideCurves(GetCurves(rebarInSystem), hostSolids))
+                            if (HasOutsideCurves(systemCurves, hostSolids))
                                 systemsOutsideHost.Add(rebarInSystem.Id);
                         }
                     }
@@ -113,8 +123,8 @@
                     if (outsideHostRebars.Any())
                     {
                         // Арматурные стержни, находящиеся вне основы или выступающие за основу (при компоновке):
-                        taskDialog.MainContent += 
-                            Environment.NewLine + Language.GetItem(LangItem, "m8") + 
+                        taskDialog.MainContent +=
+                            Environment.NewLine + Language.GetItem(LangItem, "m8") +
                             " " + outsideHostRebars.Count;
                         // Выбрать арматурные стержни
                         taskDialog.AddCommandLink(TaskDialogCommandLinkId.CommandLink1, Language.GetItem(LangItem, "m9"));
@@ -124,7 +134,7 @@
                     if (noHostRebars.Any())
                     {
                         // Арматура, не имеющая основы:
-                        taskDialog.MainContent += 
+                        taskDialog.MainContent +=
                             Environment.NewLine + Language.GetItem(LangItem, "m10") +
                             " " + noHostRebars.Count;
                         // Выбрать арматурные стержни
@@ -135,7 +145,7 @@
                     if (systemsOutsideHost.Any())
                     {
                         // Арматурные стержни в системе, выступающие за основу:
-                        taskDialog.MainContent += 
+                        taskDialog.MainContent +=
                             Environment.NewLine + Language.GetItem(LangItem, "m11") +
                             " " + systemsOutsideHost.Count;
                         // Выбрать системы
@@ -235,32 +245,11 @@
         }
 
         /// <summary>
-        /// Получение списка кривых из геометрии элемента
-        /// </summary>
-        /// <param name="element">Элемент</param>
-        private List<Curve> GetCurves(Element element)
-        {
-            List<Curve> curves = new List<Curve>();
-            foreach (GeometryObject geometryObject in element.get_Geometry(new Options
-            {
-                ComputeReferences = false,
-                IncludeNonVisibleObjects = true,
-                DetailLevel = ViewDetailLevel.Fine
-            }))
-            {
-                if (geometryObject is Curve curve)
-                    curves.Add(curve);
-            }
-
-            return curves;
-        }
-
-        /// <summary>
         /// Проверка, что список кривых содержит хотя бы одно пересечение со списком солидов
         /// </summary>
         /// <param name="curves">Список кривых</param>
         /// <param name="solids">Список солидов</param>
-        private bool IntersectWithSolids(List<Curve> curves, List<Solid> solids)
+        private static bool IntersectWithSolids(List<Curve> curves, List<Solid> solids)
         {
             foreach (Curve curve in curves)
             {
@@ -283,8 +272,7 @@
         /// </summary>
         /// <param name="curves">Список кривых</param>
         /// <param name="solids">Список солидов</param>
-        /// <returns></returns>
-        private bool HasOutsideCurves(List<Curve> curves, List<Solid> solids)
+        private static bool HasOutsideCurves(List<Curve> curves, List<Solid> solids)
         {
             foreach (Curve curve in curves)
             {
