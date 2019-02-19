@@ -75,6 +75,7 @@ namespace mprTools.Application
             // interface of current modplus function
             var intF = new Interface();
             var assembly = Assembly.GetExecutingAssembly().Location;
+            var contextualHelp = new ContextualHelp(ContextualHelpType.Url, ModPlus_Revit.App.RibbonBuilder.GetHelpUrl(intF.Name));
 
             // grids mode
             var pbdGrids = new PushButtonData(
@@ -88,6 +89,8 @@ namespace mprTools.Application
                     new Uri("pack://application:,,,/mprTools_" + intF.AvailProductExternalVersion +
                             ";component/Icons/GridsMode_16x16.png"))
             };
+            
+            pbdGrids.SetContextualHelp(contextualHelp);
 
             // Rebars outside host
             var pbdRebarsOutsideHost = new PushButtonData(
@@ -102,6 +105,7 @@ namespace mprTools.Application
                     new Uri("pack://application:,,,/mprTools_" + intF.AvailProductExternalVersion +
                             ";component/Icons/RebarsWithoutHost_16x16.png"))
             };
+            pbdRebarsOutsideHost.SetContextualHelp(contextualHelp);
 
             // CategoryOnOff
             var pulldownButtonDataOn = new PulldownButtonData("CategoryOn",
@@ -112,6 +116,7 @@ namespace mprTools.Application
                             ";component/Icons/CategoryOnOff/CategoryOn_16x16.png")),
                 ToolTip = Language.GetItem(LangItem, "ttShow")
             };
+            pulldownButtonDataOn.SetContextualHelp(contextualHelp);
             var pulldownButtonDataOff = new PulldownButtonData("CategoryOff",
                 Language.GetItem(LangItem, "Hide"))
             {
@@ -120,6 +125,7 @@ namespace mprTools.Application
                             ";component/Icons/CategoryOnOff/CategoryOff_16x16.png")),
                 ToolTip = Language.GetItem(LangItem, "ttHide")
             };
+            pulldownButtonDataOff.SetContextualHelp(contextualHelp);
             // create stacked panel
 #if R2015
             var stackedItems = panel.AddStackedItems(pbdRebarsOutsideHost, pulldownButtonDataOn, pulldownButtonDataOff);
@@ -175,6 +181,7 @@ namespace mprTools.Application
                                                      ";component/Icons/CopingDistance_32x32.png")),
                 ToolTip = Language.GetItem(LangItem, "h7")
             };
+            copingDistancePushButtonData.SetContextualHelp(contextualHelp);
 
             // add to panel
             panel.AddItem(copingDistancePushButtonData);
@@ -204,6 +211,7 @@ namespace mprTools.Application
                     Image = GetIconForCategoryOnOff(name, onOff, intF),
                     LargeImage = GetIconForCategoryOnOff(name, onOff, intF)
                 };
+                pbd.SetContextualHelp(new ContextualHelp(ContextualHelpType.Url, ModPlus_Revit.App.RibbonBuilder.GetHelpUrl(intF.Name)));
                 return pbd;
             }
             else
@@ -213,6 +221,7 @@ namespace mprTools.Application
                     Image = GetIconForCategoryOnOff(name, onOff, intF),
                     LargeImage = GetIconForCategoryOnOff(name, onOff, intF)
                 };
+                pbd.SetContextualHelp(new ContextualHelp(ContextualHelpType.Url, ModPlus_Revit.App.RibbonBuilder.GetHelpUrl(intF.Name)));
                 return pbd;
             }
         }
