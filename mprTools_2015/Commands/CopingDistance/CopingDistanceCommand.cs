@@ -11,7 +11,7 @@ namespace mprTools.Commands.CopingDistance
     {
         public Result Execute(ExternalCommandData commandData, ref string message, ElementSet elements)
         {
-            Statistic.SendCommandStarting("mprCopingDistance", new Interface().AvailProductExternalVersion);
+            Statistic.SendCommandStarting("mprCopingDistance", new ModPlusConnector().AvailProductExternalVersion);
             var window = new CopingDistanceSettings(commandData.Application);
             window.ShowDialog();
             return Result.Succeeded;

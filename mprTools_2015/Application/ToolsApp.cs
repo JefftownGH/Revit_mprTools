@@ -73,7 +73,7 @@ namespace mprTools.Application
             if (panel == null)
                 panel = application.CreateRibbonPanel("ModPlus", Language.TryGetCuiLocalGroupName("Утилиты"));
             // interface of current modplus function
-            var intF = new Interface();
+            var intF = new ModPlusConnector();
             var assembly = Assembly.GetExecutingAssembly().Location;
             var contextualHelp = new ContextualHelp(ContextualHelpType.Url, ModPlus_Revit.App.RibbonBuilder.GetHelpUrl(intF.Name));
 
@@ -201,7 +201,7 @@ namespace mprTools.Application
             return lName.Substring(0, nearestDelta) + Environment.NewLine + lName.Substring(nearestDelta + 1);
         }
 
-        private static PushButtonData GetCategoryOnOffPushButtonData(string name, int onOff, Interface intF, string assembly)
+        private static PushButtonData GetCategoryOnOffPushButtonData(string name, int onOff, ModPlusConnector intF, string assembly)
         {
             if (onOff == 0) // on
             {
@@ -226,7 +226,7 @@ namespace mprTools.Application
             }
         }
 
-        private static BitmapImage GetIconForCategoryOnOff(string name, int onOff, Interface intF)
+        private static BitmapImage GetIconForCategoryOnOff(string name, int onOff, ModPlusConnector intF)
         {
             if (onOff == 0) // on
                 return new BitmapImage(

@@ -10,7 +10,7 @@ namespace mprTools.Commands.CopingDistance
 
         public CopingDistanceUpdater()
         {
-            _updaterId = new UpdaterId(new AddInId(new Interface().AddInId), new Guid("a0d36406-d2fd-4cbe-902b-da1929a0aec0") );
+            _updaterId = new UpdaterId(new AddInId(new ModPlusConnector().AddInId), new Guid("a0d36406-d2fd-4cbe-902b-da1929a0aec0") );
         }
 
         public void Execute(UpdaterData data)

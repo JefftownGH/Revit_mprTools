@@ -13,6 +13,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "mprTools_2018", "mprTools_2
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "mprTools_2019", "mprTools_2019\mprTools_2019.csproj", "{A932E889-86A3-4C67-B032-EDE6C7A89C97}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "mprTools_2020", "mprTools_2020\mprTools_2020.csproj", "{C4594F5D-82B8-4CA0-88DC-B81F46167AC2}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -39,6 +41,10 @@ Global
 		{A932E889-86A3-4C67-B032-EDE6C7A89C97}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{A932E889-86A3-4C67-B032-EDE6C7A89C97}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{A932E889-86A3-4C67-B032-EDE6C7A89C97}.Release|Any CPU.Build.0 = Release|Any CPU
+		{C4594F5D-82B8-4CA0-88DC-B81F46167AC2}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C4594F5D-82B8-4CA0-88DC-B81F46167AC2}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C4594F5D-82B8-4CA0-88DC-B81F46167AC2}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C4594F5D-82B8-4CA0-88DC-B81F46167AC2}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

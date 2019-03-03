@@ -15,7 +15,7 @@ namespace mprTools.Commands.GridsMode
         {
             try
             {
-                Statistic.SendCommandStarting("mprGridsMode", new Interface().AvailProductExternalVersion);
+                Statistic.SendCommandStarting("mprGridsMode", new ModPlusConnector().AvailProductExternalVersion);
                 var gridsModeWindow = new GridsModeWindow(commandData.Application);
                 gridsModeWindow.ShowDialog();
 

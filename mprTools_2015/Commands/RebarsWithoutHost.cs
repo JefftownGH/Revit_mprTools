@@ -18,7 +18,7 @@
 
         public Result Execute(ExternalCommandData commandData, ref string message, ElementSet elements)
         {
-            Statistic.SendCommandStarting("mprRebarsWithoutHost", new Interface().AvailProductExternalVersion);
+            Statistic.SendCommandStarting("mprRebarsWithoutHost", new ModPlusConnector().AvailProductExternalVersion);
             try
             {
                 var doc = commandData.Application.ActiveUIDocument.Document;
