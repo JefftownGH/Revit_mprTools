@@ -639,6 +639,7 @@ namespace mprTools.Commands
             var view = commandData.View;
             if (!view.IsTemplate && view.ViewTemplateId != ElementId.InvalidElementId)
             {
+                // Невозможно изменить настройки видимости для категории на текущем виде, так как к виду применен шаблон вида
                 MessageBox.Show(Language.GetItem(LangItem, "m1"), MessageBoxIcon.Close);
                 return true;
             }
