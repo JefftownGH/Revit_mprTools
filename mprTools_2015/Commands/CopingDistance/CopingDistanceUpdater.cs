@@ -1,26 +1,31 @@
-﻿using System;
-using Autodesk.Revit.DB;
-using ModPlusAPI.Windows;
-
-namespace mprTools.Commands.CopingDistance
+﻿namespace mprTools.Commands.CopingDistance
 {
+    using System;
+    using Autodesk.Revit.DB;
+    using ModPlusAPI.Windows;
+
     public class CopingDistanceUpdater : IUpdater
     {
         private static UpdaterId _updaterId;
 
         public CopingDistanceUpdater()
         {
-            _updaterId = new UpdaterId(new AddInId(new ModPlusConnector().AddInId), new Guid("a0d36406-d2fd-4cbe-902b-da1929a0aec0") );
+            _updaterId = new UpdaterId(new AddInId(new ModPlusConnector().AddInId), new Guid("a0d36406-d2fd-4cbe-902b-da1929a0aec0"));
         }
 
+        /// <inheritdoc />
         public void Execute(UpdaterData data)
         {
-            Document doc = data.GetDocument();
+            var doc = data.GetDocument();
+
             // ReSharper disable once UseNullPropagation
-            if(doc == null) return;
-            if(doc.ActiveView == null) return;
-            if(doc.IsFamilyDocument) return;
-            foreach (ElementId elementId in data.GetModifiedElementIds())
+            if (doc == null)
+                return;
+            if (doc.ActiveView == null)
+                return;
+            if (doc.IsFamilyDocument) 
+                return;
+            foreach (var elementId in data.GetModifiedElementIds())
             {
                 if (doc.GetElement(elementId) is FamilyInstance familyInstance &&
                     familyInstance.Category.Id.IntegerValue == (int) BuiltInCategory.OST_StructuralFraming)
@@ -38,21 +43,25 @@ namespace mprTools.Commands.CopingDistance
             }
         }
 
+        /// <inheritdoc />
         public UpdaterId GetUpdaterId()
         {
             return _updaterId;
         }
 
+        /// <inheritdoc />
         public ChangePriority GetChangePriority()
         {
             return ChangePriority.Structure;
         }
 
+        /// <inheritdoc />
         public string GetUpdaterName()
         {
             return "CopingDistanceUpdater";
         }
 
+        /// <inheritdoc />
         public string GetAdditionalInformation()
         {
             return "modplus.org";

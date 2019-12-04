@@ -1,14 +1,17 @@
-﻿using Autodesk.Revit.Attributes;
-using Autodesk.Revit.DB;
-using Autodesk.Revit.UI;
-using ModPlusAPI;
-
-namespace mprTools.Commands.CopingDistance
+﻿namespace mprTools.Commands.CopingDistance
 {
+    using Autodesk.Revit.Attributes;
+    using Autodesk.Revit.DB;
+    using Autodesk.Revit.UI;
+    using ModPlusAPI;
+
     [Transaction(TransactionMode.Manual)]
     [Regeneration(RegenerationOption.Manual)]
     public class CopingDistanceCommand : IExternalCommand
     {
+        public static double DistanceInMm;
+
+        /// <inheritdoc />
         public Result Execute(ExternalCommandData commandData, ref string message, ElementSet elements)
         {
             Statistic.SendCommandStarting("mprCopingDistance", new ModPlusConnector().AvailProductExternalVersion);
@@ -34,7 +37,5 @@ namespace mprTools.Commands.CopingDistance
                 UpdaterRegistry.UnregisterUpdater(updater.GetUpdaterId());
             }
         }
-
-        public static double DistanceInMm;
     }
 }

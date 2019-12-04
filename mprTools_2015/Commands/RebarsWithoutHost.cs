@@ -36,7 +36,7 @@
                     .Cast<RebarInSystem>()
                     .ToList();
 
-                TaskDialog taskDialog = new TaskDialog(Language.GetItem(LangItem, "h17"));
+                var taskDialog = new TaskDialog(Language.GetItem(LangItem, "h17"));
                 if (!rebars.Any() && !rebarInSystems.Any())
                 {
                     // В текущем проекте не найдена арматура
@@ -46,33 +46,33 @@
                 }
 
                 taskDialog.MainContent =
-                    // В текущем проекте найдено:
+                    //// В текущем проекте найдено:
                     Language.GetItem(LangItem, "m3") + Environment.NewLine +
-                    // Арматурные стержни:
+                    //// Арматурные стержни:
                     Language.GetItem(LangItem, "m4") + " " + rebars.Count + Environment.NewLine +
-                    // Арматурные стержни в системе:
+                    //// Арматурные стержни в системе:
                     Language.GetItem(LangItem, "m5") + " " + rebarInSystems.Count;
 
                 taskDialog.AddCommandLink(
                     TaskDialogCommandLinkId.CommandLink1,
-                    // Выполнить проверку
+                    //// Выполнить проверку
                     Language.GetItem(LangItem, "m6"));
                 var dialogResult = taskDialog.Show();
 
                 if (dialogResult == TaskDialogResult.CommandLink1)
                 {
                     taskDialog = new TaskDialog(Language.GetItem(LangItem, "h17"));
-                    // Результат проверки:
+                    //// Результат проверки:
                     taskDialog.MainContent = Language.GetItem(LangItem, "m7");
 
                     // для кэширования
-                    Dictionary<int, List<Solid>> hostDictionary = new Dictionary<int, List<Solid>>();
+                    var hostDictionary = new Dictionary<int, List<Solid>>();
 
-                    List<ElementId> outsideHostRebars = new List<ElementId>();
-                    List<ElementId> noHostRebars = new List<ElementId>();
-                    List<ElementId> systemsOutsideHost = new List<ElementId>();
+                    var outsideHostRebars = new List<ElementId>();
+                    var noHostRebars = new List<ElementId>();
+                    var systemsOutsideHost = new List<ElementId>();
 
-                    foreach (Rebar rebar in rebars)
+                    foreach (var rebar in rebars)
                     {
                         var hostId = rebar.GetHostId();
                         if (hostId == ElementId.InvalidElementId)
@@ -81,7 +81,7 @@
                         }
                         else
                         {
-                            List<Solid> hostSolids = GetHostSolids(hostDictionary, hostId, doc);
+                            var hostSolids = GetHostSolids(hostDictionary, hostId, doc);
 
 #if R2015 || R2016
                             var rebarCurves = rebar.GetCenterlineCurves(false, false, false).ToList();
@@ -103,22 +103,24 @@
                         }
                     }
 
-                    foreach (RebarInSystem rebarInSystem in rebarInSystems)
+                    foreach (var rebarInSystem in rebarInSystems)
                     {
                         var hostId = rebarInSystem.GetHostId();
                         if (hostId == ElementId.InvalidElementId)
+                        {
                             noHostRebars.Add(rebarInSystem.Id);
+                        }
                         else
                         {
                             var systemCurves = rebarInSystem.GetCenterlineCurves(false, false, false).ToList();
-                            List<Solid> hostSolids = GetHostSolids(hostDictionary, hostId, doc);
+                            var hostSolids = GetHostSolids(hostDictionary, hostId, doc);
                             if (HasOutsideCurves(systemCurves, hostSolids))
                                 systemsOutsideHost.Add(rebarInSystem.Id);
                         }
                     }
 
-                    bool selectAll = false;
-                    List<ElementId> allElementIds = new List<ElementId>();
+                    var selectAll = false;
+                    var allElementIds = new List<ElementId>();
 
                     if (outsideHostRebars.Any())
                     {
@@ -126,28 +128,33 @@
                         taskDialog.MainContent +=
                             Environment.NewLine + Language.GetItem(LangItem, "m8") +
                             " " + outsideHostRebars.Count;
+                        
                         // Выбрать арматурные стержни
                         taskDialog.AddCommandLink(TaskDialogCommandLinkId.CommandLink1, Language.GetItem(LangItem, "m9"));
                         if (noHostRebars.Any() || systemsOutsideHost.Any())
                             selectAll = true;
                     }
+
                     if (noHostRebars.Any())
                     {
                         // Арматура, не имеющая основы:
                         taskDialog.MainContent +=
                             Environment.NewLine + Language.GetItem(LangItem, "m10") +
                             " " + noHostRebars.Count;
+                        
                         // Выбрать арматурные стержни
                         taskDialog.AddCommandLink(TaskDialogCommandLinkId.CommandLink2, Language.GetItem(LangItem, "m9"));
                         if (outsideHostRebars.Any() || systemsOutsideHost.Any())
                             selectAll = true;
                     }
+
                     if (systemsOutsideHost.Any())
                     {
                         // Арматурные стержни в системе, выступающие за основу:
                         taskDialog.MainContent +=
                             Environment.NewLine + Language.GetItem(LangItem, "m11") +
                             " " + systemsOutsideHost.Count;
+                        
                         // Выбрать системы
                         taskDialog.AddCommandLink(TaskDialogCommandLinkId.CommandLink3, Language.GetItem(LangItem, "m12"));
                         if (outsideHostRebars.Any() || noHostRebars.Any())
@@ -159,6 +166,7 @@
                         allElementIds.AddRange(outsideHostRebars);
                         allElementIds.AddRange(noHostRebars);
                         allElementIds.AddRange(systemsOutsideHost);
+                        
                         // Выбрать все
                         taskDialog.AddCommandLink(TaskDialogCommandLinkId.CommandLink4, Language.GetItem(LangItem, "m13"));
                     }
@@ -228,8 +236,8 @@
         /// <param name="element">Элемент</param>
         private List<Solid> GetSolids(Element element)
         {
-            List<Solid> solids = new List<Solid>();
-            foreach (GeometryObject geometryObject in element.get_Geometry(new Options
+            var solids = new List<Solid>();
+            foreach (var geometryObject in element.get_Geometry(new Options
             {
                 ComputeReferences = false,
                 IncludeNonVisibleObjects = false,
@@ -251,9 +259,9 @@
         /// <param name="solids">Список солидов</param>
         private static bool IntersectWithSolids(List<Curve> curves, List<Solid> solids)
         {
-            foreach (Curve curve in curves)
+            foreach (var curve in curves)
             {
-                foreach (Solid solid in solids)
+                foreach (var solid in solids)
                 {
                     var intersectWithCurve = solid.IntersectWithCurve(
                         curve,
@@ -274,9 +282,9 @@
         /// <param name="solids">Список солидов</param>
         private static bool HasOutsideCurves(List<Curve> curves, List<Solid> solids)
         {
-            foreach (Curve curve in curves)
+            foreach (var curve in curves)
             {
-                foreach (Solid solid in solids)
+                foreach (var solid in solids)
                 {
                     var intersectWithCurve = solid.IntersectWithCurve(
                         curve,
@@ -285,6 +293,7 @@
                         return true;
                 }
             }
+
             return false;
         }
     }

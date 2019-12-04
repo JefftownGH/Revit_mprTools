@@ -1,20 +1,22 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Reflection;
-using System.Windows.Media.Imaging;
-using Autodesk.Revit.UI;
-using mprTools.Commands.CopingDistance;
-using ModPlusAPI;
-using ModPlusAPI.Windows;
-
-namespace mprTools.Application
+﻿namespace mprTools.Application
 {
+    using System;
+    using System.Collections.Generic;
+    using System.Linq;
+    using System.Reflection;
+    using System.Windows.Media.Imaging;
+    using Autodesk.Revit.UI;
+    using ModPlusAPI;
+    using ModPlusAPI.Windows;
+    using Commands.CopingDistance;
+
     public class ToolsApp : IExternalApplication
     {
         private const string LangItem = "mprTools";
+
         public static CopingDistanceUpdater CopingDistanceUpdater;
 
+        /// <inheritdoc />
         public Result OnStartup(UIControlledApplication application)
         {
             try
@@ -23,21 +25,18 @@ namespace mprTools.Application
 
                 CopingDistanceUpdater = new CopingDistanceUpdater();
 
-                // Значение оступа врезки из настроек. По умолчанию как в Ревите - 20 мм
+                // Значение отступа врезки из настроек. По умолчанию как в Ревите - 20 мм
                 CopingDistanceCommand.DistanceInMm =
-                    double.TryParse(UserConfigFile.GetValue(UserConfigFile.ConfigFileZone.Settings, "mprTools", "CopingDistanceValue"),
-                        out var d)
-                        ? d
-                        : 20.0;
+                    double.TryParse(UserConfigFile.GetValue("mprTools", "CopingDistanceValue"), out var d) ? d : 20.0;
 
                 // Статус апдейтера
                 var updaterWorkFromStartUp =
-                    bool.TryParse(UserConfigFile.GetValue(UserConfigFile.ConfigFileZone.Settings, "mprTools", "CopingDistanceUpdaterStatus"),
-                        out var b) && b; // false
+                    bool.TryParse(UserConfigFile.GetValue("mprTools", "CopingDistanceUpdaterStatus"), out var b) && b; // false
 
                 if (updaterWorkFromStartUp)
                     CopingDistanceCommand.UpdaterOn(application.ActiveAddInId, ref CopingDistanceUpdater);
-                else CopingDistanceCommand.UpdaterOff(application.ActiveAddInId, ref CopingDistanceUpdater);
+                else
+                    CopingDistanceCommand.UpdaterOff(application.ActiveAddInId, ref CopingDistanceUpdater);
 
                 #endregion
 
@@ -49,10 +48,12 @@ namespace mprTools.Application
                 ExceptionBox.Show(exception);
                 return Result.Failed;
             }
+
             // У нас всегда все хорошо
             return Result.Succeeded;
         }
 
+        /// <inheritdoc />
         public Result OnShutdown(UIControlledApplication application)
         {
             return Result.Succeeded;
@@ -72,9 +73,11 @@ namespace mprTools.Application
                     break;
                 }
             }
+
             if (panel == null)
                 panel = application.CreateRibbonPanel(tabName, Language.TryGetCuiLocalGroupName("Утилиты"));
-            // interface of current modplus function
+
+            // interface of current ModPlus function
             var intF = new ModPlusConnector();
             var assembly = Assembly.GetExecutingAssembly().Location;
             var contextualHelp = new ContextualHelp(ContextualHelpType.Url, ModPlus_Revit.App.RibbonBuilder.GetHelpUrl(intF.Name));
@@ -91,7 +94,7 @@ namespace mprTools.Application
                     new Uri("pack://application:,,,/mprTools_" + intF.AvailProductExternalVersion +
                             ";component/Icons/GridsMode_16x16.png"))
             };
-            
+
             pbdGrids.SetContextualHelp(contextualHelp);
 
             // Rebars outside host
@@ -99,8 +102,7 @@ namespace mprTools.Application
                 "Rebars outside host",
                 ConvertLName(Language.GetItem(LangItem, "h17")),
                 Assembly.GetExecutingAssembly().Location,
-                "mprTools.Commands.RebarsWithoutHost"
-                )
+                "mprTools.Commands.RebarsWithoutHost")
             {
                 ToolTip = Language.GetItem(LangItem, "h18"),
                 Image = new BitmapImage(
@@ -110,8 +112,7 @@ namespace mprTools.Application
             pbdRebarsOutsideHost.SetContextualHelp(contextualHelp);
 
             // CategoryOnOff
-            var pulldownButtonDataOn = new PulldownButtonData("CategoryOn",
-                Language.GetItem(LangItem, "Show"))
+            var pulldownButtonDataOn = new PulldownButtonData("CategoryOn", Language.GetItem(LangItem, "Show"))
             {
                 Image = new BitmapImage(
                     new Uri("pack://application:,,,/mprTools_" + intF.AvailProductExternalVersion +
@@ -119,8 +120,7 @@ namespace mprTools.Application
                 ToolTip = Language.GetItem(LangItem, "ttShow")
             };
             pulldownButtonDataOn.SetContextualHelp(contextualHelp);
-            var pulldownButtonDataOff = new PulldownButtonData("CategoryOff",
-                Language.GetItem(LangItem, "Hide"))
+            var pulldownButtonDataOff = new PulldownButtonData("CategoryOff", Language.GetItem(LangItem, "Hide"))
             {
                 Image = new BitmapImage(
                     new Uri("pack://application:,,,/mprTools_" + intF.AvailProductExternalVersion +
@@ -128,6 +128,7 @@ namespace mprTools.Application
                 ToolTip = Language.GetItem(LangItem, "ttHide")
             };
             pulldownButtonDataOff.SetContextualHelp(contextualHelp);
+
             // create stacked panel
 #if R2015
             var stackedItems = panel.AddStackedItems(pbdRebarsOutsideHost, pulldownButtonDataOn, pulldownButtonDataOff);
@@ -189,14 +190,18 @@ namespace mprTools.Application
             panel.AddItem(copingDistancePushButtonData);
 
         }
+
         private static string ConvertLName(string lName)
         {
-            if (!lName.Contains(" ")) return lName;
-            if (lName.Length <= 8) return lName;
+            if (!lName.Contains(" "))
+                return lName;
+            if (lName.Length <= 8)
+                return lName;
             if (lName.Count(x => x == ' ') == 1)
             {
                 return lName.Split(' ')[0] + Environment.NewLine + lName.Split(' ')[1];
             }
+
             var center = lName.Length * 0.5;
             var nearestDelta = lName.Select((c, i) => new { index = i, value = c }).Where(w => w.value == ' ')
                 .OrderBy(x => Math.Abs(x.index - center)).First().index;
@@ -205,7 +210,7 @@ namespace mprTools.Application
 
         private static PushButtonData GetCategoryOnOffPushButtonData(string name, int onOff, ModPlusConnector intF, string assembly)
         {
-            if (onOff == 0) // on
+            if (onOff == 0) //// on
             {
                 // Большое изображение задавать обязательно, иначе не отображается малое
                 var pbd = new PushButtonData(name, Language.GetItem(LangItem, name), assembly, $"mprTools.Commands.{name}Show")
@@ -230,13 +235,18 @@ namespace mprTools.Application
 
         private static BitmapImage GetIconForCategoryOnOff(string name, int onOff, ModPlusConnector intF)
         {
-            if (onOff == 0) // on
+            if (onOff == 0) //// on
+            {
                 return new BitmapImage(
-                    new Uri("pack://application:,,,/mprTools_" + intF.AvailProductExternalVersion +
-                            ";component/Icons/CategoryOnOff/" + name + "On_16x16.png", UriKind.RelativeOrAbsolute));
+                    new Uri(
+                        "pack://application:,,,/mprTools_" + intF.AvailProductExternalVersion +
+                        ";component/Icons/CategoryOnOff/" + name + "On_16x16.png", UriKind.RelativeOrAbsolute));
+            }
+
             return new BitmapImage(
-                new Uri("pack://application:,,,/mprTools_" + intF.AvailProductExternalVersion +
-                        ";component/Icons/CategoryOnOff/" + name + "Off_16x16.png", UriKind.RelativeOrAbsolute));
+                new Uri(
+                    "pack://application:,,,/mprTools_" + intF.AvailProductExternalVersion +
+                    ";component/Icons/CategoryOnOff/" + name + "Off_16x16.png", UriKind.RelativeOrAbsolute));
         }
     }
 }

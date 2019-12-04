@@ -41,6 +41,7 @@
                         tr.Commit();
                     }
                 }
+
                 Close();
             }
             catch (Exception exception)
@@ -71,6 +72,7 @@
                         tr.Commit();
                     }
                 }
+
                 Close();
             }
             catch (Exception exception)
@@ -104,6 +106,7 @@
                         tr.Commit();
                     }
                 }
+
                 Close();
             }
             catch (Exception exception)

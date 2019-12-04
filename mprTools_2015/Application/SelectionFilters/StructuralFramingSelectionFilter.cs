@@ -1,16 +1,14 @@
-﻿using System;
-using Autodesk.Revit.DB;
-using Autodesk.Revit.UI.Selection;
-
-namespace mprTools.Application.SelectionFilters
+﻿namespace mprTools.Application.SelectionFilters
 {
+    using System;
+    using Autodesk.Revit.DB;
+    using Autodesk.Revit.UI.Selection;
+
     public class StructuralFramingSelectionFilter : ISelectionFilter
     {
         public bool AllowElement(Element elem)
         {
-            if (elem.Category.Id.IntegerValue == (int) BuiltInCategory.OST_StructuralFraming)
-                return true;
-            return false;
+            return elem.Category.Id.IntegerValue == (int)BuiltInCategory.OST_StructuralFraming;
         }
 
         public bool AllowReference(Reference reference, XYZ position)

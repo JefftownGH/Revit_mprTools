@@ -1,12 +1,12 @@
-﻿using System;
-using Autodesk.Revit.Attributes;
-using Autodesk.Revit.DB;
-using Autodesk.Revit.UI;
-using ModPlusAPI;
-using ModPlusAPI.Windows;
-
-namespace mprTools.Commands.GridsMode
+﻿namespace mprTools.Commands.GridsMode
 {
+    using System;
+    using Autodesk.Revit.Attributes;
+    using Autodesk.Revit.DB;
+    using Autodesk.Revit.UI;
+    using ModPlusAPI;
+    using ModPlusAPI.Windows;
+
     [Transaction(TransactionMode.Manual)]
     [Regeneration(RegenerationOption.Manual)]
     public class GridsModeCommand : IExternalCommand

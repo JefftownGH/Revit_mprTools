@@ -1,14 +1,16 @@
-﻿using System;
-using System.Collections.Generic;
-using Autodesk.Revit.Attributes;
-using Autodesk.Revit.DB;
-using Autodesk.Revit.UI;
-using ModPlusAPI;
-using ModPlusAPI.Windows;
-// ReSharper disable UnusedMember.Global
-
+﻿#pragma warning disable SA1402 // File may only contain a single type
+#pragma warning disable SA1600 // Elements should be documented
+//// ReSharper disable UnusedMember.Global
 namespace mprTools.Commands
 {
+    using System;
+    using System.Collections.Generic;
+    using Autodesk.Revit.Attributes;
+    using Autodesk.Revit.DB;
+    using Autodesk.Revit.UI;
+    using ModPlusAPI;
+    using ModPlusAPI.Windows;
+
     #region Show
     [Transaction(TransactionMode.Manual)]
     public class WallsShow : IExternalCommand
@@ -19,6 +21,7 @@ namespace mprTools.Commands
             return ShowHideHelper.ShowCategory(commandData, BuiltInCategory.OST_Walls, "Walls");
         }
     }
+
     [Transaction(TransactionMode.Manual)]
     public class WindowsShow : IExternalCommand
     {
@@ -28,6 +31,7 @@ namespace mprTools.Commands
             return ShowHideHelper.ShowCategory(commandData, BuiltInCategory.OST_Windows, "Windows");
         }
     }
+
     [Transaction(TransactionMode.Manual)]
     public class DoorsShow : IExternalCommand
     {
@@ -37,6 +41,7 @@ namespace mprTools.Commands
             return ShowHideHelper.ShowCategory(commandData, BuiltInCategory.OST_Doors, "Doors");
         }
     }
+
     [Transaction(TransactionMode.Manual)]
     public class TagsShow : IExternalCommand
     {
@@ -46,6 +51,7 @@ namespace mprTools.Commands
             return ShowHideHelper.ShowCategory(commandData, "Tags");
         }
     }
+
     [Transaction(TransactionMode.Manual)]
     public class FloorsShow : IExternalCommand
     {
@@ -55,6 +61,7 @@ namespace mprTools.Commands
             return ShowHideHelper.ShowCategory(commandData, BuiltInCategory.OST_Floors, "Floors");
         }
     }
+
     [Transaction(TransactionMode.Manual)]
     public class ColumnsShow : IExternalCommand
     {
@@ -64,6 +71,7 @@ namespace mprTools.Commands
             return ShowHideHelper.ShowCategory(commandData, "Columns");
         }
     }
+
     [Transaction(TransactionMode.Manual)]
     public class GridsShow : IExternalCommand
     {
@@ -73,6 +81,7 @@ namespace mprTools.Commands
             return ShowHideHelper.ShowCategory(commandData, BuiltInCategory.OST_Grids, "Grids");
         }
     }
+
     [Transaction(TransactionMode.Manual)]
     public class LevelsShow : IExternalCommand
     {
@@ -82,6 +91,7 @@ namespace mprTools.Commands
             return ShowHideHelper.ShowCategory(commandData, BuiltInCategory.OST_Levels, "Levels");
         }
     }
+
     [Transaction(TransactionMode.Manual)]
     public class RampsShow : IExternalCommand
     {
@@ -91,6 +101,7 @@ namespace mprTools.Commands
             return ShowHideHelper.ShowCategory(commandData, BuiltInCategory.OST_Ramps, "Ramps");
         }
     }
+
     [Transaction(TransactionMode.Manual)]
     public class StairsShow : IExternalCommand
     {
@@ -100,17 +111,20 @@ namespace mprTools.Commands
             return ShowHideHelper.ShowCategory(commandData, BuiltInCategory.OST_Stairs, "Stairs");
         }
     }
+
     [Transaction(TransactionMode.Manual)]
     public class StairsRailingShow : IExternalCommand
     {
         public Result Execute(ExternalCommandData commandData, ref string message, ElementSet elements)
         {
             Statistic.SendCommandStarting("mprCategoryOnOff", new ModPlusConnector().AvailProductExternalVersion);
-            return ShowHideHelper.ShowCategory(commandData,
+            return ShowHideHelper.ShowCategory(
+                commandData,
                 new List<BuiltInCategory> { BuiltInCategory.OST_Railings, BuiltInCategory.OST_StairsRailing },
                 "StairsRailing");
         }
     }
+
     [Transaction(TransactionMode.Manual)]
     public class RoofsShow : IExternalCommand
     {
@@ -120,6 +134,7 @@ namespace mprTools.Commands
             return ShowHideHelper.ShowCategory(commandData, BuiltInCategory.OST_Roofs, "Roofs");
         }
     }
+
     [Transaction(TransactionMode.Manual)]
     public class CeilingsShow : IExternalCommand
     {
@@ -129,6 +144,7 @@ namespace mprTools.Commands
             return ShowHideHelper.ShowCategory(commandData, BuiltInCategory.OST_Ceilings, "Ceilings");
         }
     }
+
     [Transaction(TransactionMode.Manual)]
     public class ElevationsShow : IExternalCommand
     {
@@ -138,6 +154,7 @@ namespace mprTools.Commands
             return ShowHideHelper.ShowCategory(commandData, BuiltInCategory.OST_Elev, "Elevations");
         }
     }
+
     [Transaction(TransactionMode.Manual)]
     public class SectionsShow : IExternalCommand
     {
@@ -147,6 +164,7 @@ namespace mprTools.Commands
             return ShowHideHelper.ShowCategory(commandData, BuiltInCategory.OST_Sections, "Sections");
         }
     }
+
     [Transaction(TransactionMode.Manual)]
     public class ComponentsShow : IExternalCommand
     {
@@ -166,6 +184,7 @@ namespace mprTools.Commands
             }, "Components");
         }
     }
+
     [Transaction(TransactionMode.Manual)]
     public class ReferencePlanesShow : IExternalCommand
     {
@@ -175,6 +194,7 @@ namespace mprTools.Commands
             return ShowHideHelper.ShowCategory(commandData, BuiltInCategory.OST_CLines, "ReferencePlane");
         }
     }
+
     [Transaction(TransactionMode.Manual)]
     public class StructuralFramingShow : IExternalCommand
     {
@@ -196,6 +216,7 @@ namespace mprTools.Commands
             return ShowHideHelper.HideCategory(commandData, BuiltInCategory.OST_Walls, "Walls");
         }
     }
+
     [Transaction(TransactionMode.Manual)]
     public class WindowsHide : IExternalCommand
     {
@@ -205,6 +226,7 @@ namespace mprTools.Commands
             return ShowHideHelper.HideCategory(commandData, BuiltInCategory.OST_Windows, "Windows");
         }
     }
+
     [Transaction(TransactionMode.Manual)]
     public class DoorsHide : IExternalCommand
     {
@@ -214,6 +236,7 @@ namespace mprTools.Commands
             return ShowHideHelper.HideCategory(commandData, BuiltInCategory.OST_Doors, "Doors");
         }
     }
+
     [Transaction(TransactionMode.Manual)]
     public class TagsHide : IExternalCommand
     {
@@ -223,6 +246,7 @@ namespace mprTools.Commands
             return ShowHideHelper.HideCategory(commandData, "Tags");
         }
     }
+
     [Transaction(TransactionMode.Manual)]
     public class FloorsHide : IExternalCommand
     {
@@ -232,6 +256,7 @@ namespace mprTools.Commands
             return ShowHideHelper.HideCategory(commandData, BuiltInCategory.OST_Floors, "Floors");
         }
     }
+
     [Transaction(TransactionMode.Manual)]
     public class ColumnsHide : IExternalCommand
     {
@@ -241,6 +266,7 @@ namespace mprTools.Commands
             return ShowHideHelper.HideCategory(commandData, "Columns");
         }
     }
+
     [Transaction(TransactionMode.Manual)]
     public class GridsHide : IExternalCommand
     {
@@ -250,6 +276,7 @@ namespace mprTools.Commands
             return ShowHideHelper.HideCategory(commandData, BuiltInCategory.OST_Grids, "Grids");
         }
     }
+
     [Transaction(TransactionMode.Manual)]
     public class LevelsHide : IExternalCommand
     {
@@ -259,6 +286,7 @@ namespace mprTools.Commands
             return ShowHideHelper.HideCategory(commandData, BuiltInCategory.OST_Levels, "Levels");
         }
     }
+
     [Transaction(TransactionMode.Manual)]
     public class RampsHide : IExternalCommand
     {
@@ -268,6 +296,7 @@ namespace mprTools.Commands
             return ShowHideHelper.HideCategory(commandData, BuiltInCategory.OST_Ramps, "Ramps");
         }
     }
+
     [Transaction(TransactionMode.Manual)]
     public class StairsHide : IExternalCommand
     {
@@ -277,17 +306,20 @@ namespace mprTools.Commands
             return ShowHideHelper.HideCategory(commandData, BuiltInCategory.OST_Stairs, "Stairs");
         }
     }
+
     [Transaction(TransactionMode.Manual)]
     public class StairsRailingHide : IExternalCommand
     {
         public Result Execute(ExternalCommandData commandData, ref string message, ElementSet elements)
         {
             Statistic.SendCommandStarting("mprCategoryOnOff", new ModPlusConnector().AvailProductExternalVersion);
-            return ShowHideHelper.HideCategory(commandData,
+            return ShowHideHelper.HideCategory(
+                commandData,
                 new List<BuiltInCategory> { BuiltInCategory.OST_Railings, BuiltInCategory.OST_StairsRailing },
                 "StairsRailing");
         }
     }
+
     [Transaction(TransactionMode.Manual)]
     public class RoofsHide : IExternalCommand
     {
@@ -297,6 +329,7 @@ namespace mprTools.Commands
             return ShowHideHelper.HideCategory(commandData, BuiltInCategory.OST_Roofs, "Roofs");
         }
     }
+
     [Transaction(TransactionMode.Manual)]
     public class CeilingsHide : IExternalCommand
     {
@@ -306,6 +339,7 @@ namespace mprTools.Commands
             return ShowHideHelper.HideCategory(commandData, BuiltInCategory.OST_Ceilings, "Ceilings");
         }
     }
+
     [Transaction(TransactionMode.Manual)]
     public class ElevationsHide : IExternalCommand
     {
@@ -315,6 +349,7 @@ namespace mprTools.Commands
             return ShowHideHelper.HideCategory(commandData, BuiltInCategory.OST_Elev, "Elevations");
         }
     }
+
     [Transaction(TransactionMode.Manual)]
     public class SectionsHide : IExternalCommand
     {
@@ -324,6 +359,7 @@ namespace mprTools.Commands
             return ShowHideHelper.HideCategory(commandData, BuiltInCategory.OST_Sections, "Sections");
         }
     }
+
     [Transaction(TransactionMode.Manual)]
     public class ComponentsHide : IExternalCommand
     {
@@ -343,6 +379,7 @@ namespace mprTools.Commands
             }, "Components");
         }
     }
+
     [Transaction(TransactionMode.Manual)]
     public class ReferencePlanesHide : IExternalCommand
     {
@@ -352,6 +389,7 @@ namespace mprTools.Commands
             return ShowHideHelper.HideCategory(commandData, BuiltInCategory.OST_CLines, "ReferencePlane");
         }
     }
+
     [Transaction(TransactionMode.Manual)]
     public class StructuralFramingHide : IExternalCommand
     {
@@ -368,7 +406,7 @@ namespace mprTools.Commands
         private const string LangItem = "mprTools";
 
         /// <summary>Скрыть указанную категорию с текущего вида</summary>
-        /// <param name="commandData"></param>
+        /// <param name="commandData"><see cref="ExternalCommandData"/></param>
         /// <param name="cat">Категория</param>
         /// <param name="name">Имя категории, отображаемое в транзакции</param>
         public static Result HideCategory(ExternalCommandData commandData, BuiltInCategory cat, string name)
@@ -380,12 +418,15 @@ namespace mprTools.Commands
                 var doc = commandData.Application.ActiveUIDocument.Document;
                 Category category = doc.Settings.Categories.get_Item(cat);
                 if (category?.get_Visible(doc.ActiveView) == true)
+                {
                     using (var tr = new Transaction(doc, Language.GetItem(LangItem, "Hide") + " " + Language.GetItem(LangItem, name)))
                     {
                         tr.Start();
                         category.set_Visible(doc.ActiveView, false);
                         tr.Commit();
                     }
+                }
+
                 return Result.Succeeded;
             }
             catch (Exception exception)
@@ -396,7 +437,7 @@ namespace mprTools.Commands
         }
 
         /// <summary>Скрыть указанную категорию с текущего вида</summary>
-        /// <param name="commandData"></param>
+        /// <param name="commandData"><see cref="ExternalCommandData"/></param>
         /// <param name="cats">Список категорий</param>
         /// <param name="name">Имя категории, отображаемое в транзакции</param>
         public static Result HideCategory(ExternalCommandData commandData, List<BuiltInCategory> cats, string name)
@@ -415,8 +456,10 @@ namespace mprTools.Commands
                         if (category?.get_Visible(doc.ActiveView) == true)
                             category.set_Visible(doc.ActiveView, false);
                     }
+
                     tr.Commit();
                 }
+
                 return Result.Succeeded;
             }
             catch (Exception exception)
@@ -427,8 +470,8 @@ namespace mprTools.Commands
         }
 
         /// <summary>Скрыть категории, название которых содержит указанное значение</summary>
-        /// <param name="commandData"></param>
-        /// <param name="name">Имя категории. Оно же должно содержаться в строковм представлении перечеслителя категории</param>
+        /// <param name="commandData"><see cref="ExternalCommandData"/></param>
+        /// <param name="name">Имя категории. Оно же должно содержаться в строковом представлении перечеслителя категории</param>
         public static Result HideCategory(ExternalCommandData commandData, string name)
         {
             try
@@ -450,8 +493,10 @@ namespace mprTools.Commands
                             }
                         }
                     }
+
                     tr.Commit();
                 }
+
                 return Result.Succeeded;
             }
             catch (Exception exception)
@@ -462,9 +507,9 @@ namespace mprTools.Commands
         }
 
         /// <summary>Скрыть категории, название которых содержит указанное значение</summary>
-        /// <param name="commandData"></param>
+        /// <param name="commandData"><see cref="ExternalCommandData"/></param>
         /// <param name="name">Имя категории</param>
-        /// <param name="contains">Значение, которое должно содержаться в строковм представлении перечеслителя категории</param>
+        /// <param name="contains">Значение, которое должно содержаться в строковом представлении перечеслителя категории</param>
         public static Result HideCategory(ExternalCommandData commandData, string name, string contains)
         {
             try
@@ -486,8 +531,10 @@ namespace mprTools.Commands
                             }
                         }
                     }
+
                     tr.Commit();
                 }
+
                 return Result.Succeeded;
             }
             catch (Exception exception)
@@ -498,7 +545,7 @@ namespace mprTools.Commands
         }
 
         /// <summary>Показать указанную категорию с текущего вида</summary>
-        /// <param name="commandData"></param>
+        /// <param name="commandData"><see cref="ExternalCommandData"/></param>
         /// <param name="cat">Категория</param>
         /// <param name="name">Имя категории, отображаемое в транзакции</param>
         public static Result ShowCategory(ExternalCommandData commandData, BuiltInCategory cat, string name)
@@ -510,12 +557,15 @@ namespace mprTools.Commands
                 var doc = commandData.Application.ActiveUIDocument.Document;
                 Category category = doc.Settings.Categories.get_Item(cat);
                 if (category?.get_Visible(doc.ActiveView) == false)
+                {
                     using (var tr = new Transaction(doc, Language.GetItem(LangItem, "Show") + " " + Language.GetItem(LangItem, name)))
                     {
                         tr.Start();
                         category.set_Visible(doc.ActiveView, true);
                         tr.Commit();
                     }
+                }
+
                 return Result.Succeeded;
             }
             catch (Exception exception)
@@ -526,7 +576,7 @@ namespace mprTools.Commands
         }
 
         /// <summary>Показать указанную категорию с текущего вида</summary>
-        /// <param name="commandData"></param>
+        /// <param name="commandData"><see cref="ExternalCommandData"/></param>
         /// <param name="cats">Список категорий</param>
         /// <param name="name">Имя категории, отображаемое в транзакции</param>
         public static Result ShowCategory(ExternalCommandData commandData, List<BuiltInCategory> cats, string name)
@@ -545,8 +595,10 @@ namespace mprTools.Commands
                         if (category?.get_Visible(doc.ActiveView) == false)
                             category.set_Visible(doc.ActiveView, true);
                     }
+
                     tr.Commit();
                 }
+
                 return Result.Succeeded;
             }
             catch (Exception exception)
@@ -557,8 +609,8 @@ namespace mprTools.Commands
         }
 
         /// <summary>Показать категории, название которых содержит указанное значение</summary>
-        /// <param name="commandData"></param>
-        /// <param name="name">Имя категории. Оно же должно содержаться в строковм представлении перечеслителя категории</param>
+        /// <param name="commandData"><see cref="ExternalCommandData"/></param>
+        /// <param name="name">Имя категории. Оно же должно содержаться в строковом представлении перечеслителя категории</param>
         public static Result ShowCategory(ExternalCommandData commandData, string name)
         {
             try
@@ -583,6 +635,7 @@ namespace mprTools.Commands
 
                     tr.Commit();
                 }
+
                 return Result.Succeeded;
             }
             catch (Exception exception)
@@ -593,9 +646,9 @@ namespace mprTools.Commands
         }
 
         /// <summary>Показать категории, название которых содержит указанное значение</summary>
-        /// <param name="commandData"></param>
+        /// <param name="commandData"><see cref="ExternalCommandData"/></param>
         /// <param name="name">Имя категории</param>
-        /// <param name="contains">Значение, которое должно содержаться в строковм представлении перечеслителя категории</param>
+        /// <param name="contains">Значение, которое должно содержаться в строковом представлении перечеслителя категории</param>
         public static Result ShowCategory(ExternalCommandData commandData, string name, string contains)
         {
             try
@@ -620,6 +673,7 @@ namespace mprTools.Commands
 
                     tr.Commit();
                 }
+
                 return Result.Succeeded;
             }
             catch (Exception exception)
@@ -632,7 +686,7 @@ namespace mprTools.Commands
         /// <summary>
         /// Проверка текущего вида на наличие примененного шаблона вида
         /// </summary>
-        /// <param name="commandData"></param>
+        /// <param name="commandData"><see cref="ExternalCommandData"/></param>
         /// <returns></returns>
         private static bool HasTemplateInCurrentView(ExternalCommandData commandData)
         {
@@ -648,3 +702,5 @@ namespace mprTools.Commands
         }
     }
 }
+#pragma warning restore SA1402 // File may only contain a single type
+#pragma warning restore SA1600 // Elements should be documented
