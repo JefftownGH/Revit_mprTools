@@ -81,12 +81,20 @@
       <DependentUpon>CopingDistanceSettings.xaml</DependentUpon>
     </Compile>
     <Compile Include="Commands\CopingDistance\CopingDistanceUpdater.cs" />
+    <Compile Include="Commands\GridsMode\GridsModeCommand.cs" />
+    <Compile Include="Commands\GridsMode\GridsModeWindow.xaml.cs">
+      <DependentUpon>GridsModeWindow.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Commands\RebarsWithoutHost.cs" />
     <Compile Include="ModPlusConnector.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
     <Page Include="Commands\CopingDistance\CopingDistanceSettings.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Commands\GridsMode\GridsModeWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -263,6 +271,7 @@
       <PrivateAssets>all</PrivateAssets>
     </PackageReference>
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>
     <PostBuildEvent>if $(ConfigurationName) == Release (
