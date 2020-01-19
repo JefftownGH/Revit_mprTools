@@ -2,15 +2,12 @@
 {
     using System;
     using System.Collections.Generic;
-    using System.Linq;
     using System.Reflection;
     using System.Windows.Media.Imaging;
     using Autodesk.Revit.UI;
-    using Autodesk.Windows;
+    using Commands.CopingDistance;
     using ModPlusAPI;
     using ModPlusAPI.Windows;
-    using Commands.CopingDistance;
-    using RibbonPanel = Autodesk.Revit.UI.RibbonPanel;
 
     public class ToolsApp : IExternalApplication
     {
@@ -45,7 +42,7 @@
                 // create ribbon tab
                 CreateRibbonTab(application);
 
-                HideTextOfSmallButtons("ModPlus", new List<string> { "Grids mode", "Rebars outside host" });
+                ModPlus_Revit.App.RibbonBuilder.HideTextOfSmallButtons("ModPlus", new List<string> { "Grids mode", "Rebars outside host" });
             }
             catch (Exception exception)
             {
@@ -89,7 +86,7 @@
             // grids mode
             var pbdGrids = new PushButtonData(
                 "Grids mode",
-                ConvertLName(Language.GetItem(LangItem, "h11")),
+                ModPlus_Revit.App.RibbonBuilder.ConvertLName(Language.GetItem(LangItem, "h11")),
                 Assembly.GetExecutingAssembly().Location,
                 "mprTools.Commands.GridsMode.GridsModeCommand")
             {
@@ -104,7 +101,7 @@
             // Rebars outside host
             var pbdRebarsOutsideHost = new PushButtonData(
                 "Rebars outside host",
-                ConvertLName(Language.GetItem(LangItem, "h17")),
+                ModPlus_Revit.App.RibbonBuilder.ConvertLName(Language.GetItem(LangItem, "h17")),
                 Assembly.GetExecutingAssembly().Location,
                 "mprTools.Commands.RebarsWithoutHost")
             {
@@ -179,7 +176,7 @@
             // Coping distance
             var copingDistancePushButtonData = new PushButtonData(
                 "Coping Distance",
-                ConvertLName(Language.GetItem(LangItem, "h1")),
+                ModPlus_Revit.App.RibbonBuilder.ConvertLName(Language.GetItem(LangItem, "h1")),
                 assembly,
                 "mprTools.Commands.CopingDistance.CopingDistanceCommand")
             {
@@ -193,68 +190,6 @@
             // add to panel
             panel.AddItem(copingDistancePushButtonData);
         }
-
-        #region HelpMethods
-
-        ////TODO В библиотеках сделать эти методы публичными и убрать их из этого плагина
-
-        private static string ConvertLName(string lName)
-        {
-            if (!lName.Contains(" "))
-                return lName;
-            if (lName.Length <= 8)
-                return lName;
-            if (lName.Count(x => x == ' ') == 1)
-            {
-                return lName.Split(' ')[0] + Environment.NewLine + lName.Split(' ')[1];
-            }
-
-            var center = lName.Length * 0.5;
-            var nearestDelta = lName.Select((c, i) => new { index = i, value = c }).Where(w => w.value == ' ')
-                .OrderBy(x => Math.Abs(x.index - center)).First().index;
-            return lName.Substring(0, nearestDelta) + Environment.NewLine + lName.Substring(nearestDelta + 1);
-        }
-
-        /// <summary>
-        /// Убрать текст с кнопок маленького размера, расположенных в StackedPanel
-        /// </summary>
-        /// <param name="tabName">Имя вкладки, в которой выполнить поиск</param>
-        /// <param name="pluginsToHideText">Коллекция имен плагинов</param>
-        private static void HideTextOfSmallButtons(string tabName, ICollection<string> pluginsToHideText)
-        {
-            try
-            {
-                var ribbon = ComponentManager.Ribbon;
-                foreach (var ribbonTab in ribbon.Tabs)
-                {
-                    if (ribbonTab.Name != tabName)
-                        continue;
-
-                    foreach (var ribbonTabPanel in ribbonTab.Panels)
-                    {
-                        foreach (var sourceItem in ribbonTabPanel.Source.Items)
-                        {
-                            if (!(sourceItem is RibbonRowPanel ribbonRowPanel))
-                                continue;
-
-                            foreach (var ribbonItem in ribbonRowPanel.Items)
-                            {
-                                var pluginName = ribbonItem.Id.Split('%').LastOrDefault();
-                                if (pluginsToHideText.Contains(pluginName) &&
-                                    ribbonItem.Size == RibbonItemSize.Standard)
-                                    ribbonItem.ShowText = false;
-                            }
-                        }
-                    }
-                }
-            }
-            catch (Exception exception)
-            {
-                ExceptionBox.Show(exception);
-            }
-        }
-
-        #endregion
 
         private static PushButtonData GetCategoryOnOffPushButtonData(string name, int onOff, ModPlusConnector intF, string assembly)
         {
