@@ -91,6 +91,7 @@
       <DependentUpon>GridsModeWindow.xaml</DependentUpon>
     </Compile>
     <Compile Include="Commands\RebarsWithoutHost.cs" />
+    <Compile Include="Commands\ViewGraphicsOverrideType.cs" />
     <Compile Include="ModPlusConnector.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
@@ -288,6 +289,13 @@
       <PrivateAssets>all</PrivateAssets>
     </PackageReference>
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Resource Include="Icons\CategoryOnOff\StructuralFoundationOff_16x16.png" />
+    <Resource Include="Icons\CategoryOnOff\StructuralFoundationOn_16x16.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Icons\CategoryOnOff\AnalyticalOff_16x16.png" />
+    <Resource Include="Icons\CategoryOnOff\AnalyticalOn_16x16.png" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

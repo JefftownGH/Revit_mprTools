@@ -7,6 +7,7 @@
     using Autodesk.Revit.UI;
     using Commands.CopingDistance;
     using ModPlusAPI;
+    using ModPlusAPI.Interfaces;
     using ModPlusAPI.Windows;
 
     public class ToolsApp : IExternalApplication
@@ -146,10 +147,15 @@
             // add items to pulldata button
             var commands = new List<string>
                 {
-                    "Windows", "Doors", "Walls", "Columns", "StructuralFraming", "Components", "Separator",
+                    "Windows", "Doors", "Walls", "Columns", "StructuralFraming", "StructuralFoundation", 
+                    "Components", "Separator",
                     "Roofs", "Floors", "Ceilings", "Separator",
                     "Stairs", "StairsRailing", "Ramps", "Separator",
-                    "Grids", "Levels", "Sections", "Elevations", "Tags", "ReferencePlanes"
+                    "Grids", "Levels", "Sections", "Elevations", "Tags", "ReferencePlanes", "Separator",
+                    "AllAnalytical", "BeamAnalytical", "BraceAnalytical", "ColumnAnalytical", "FloorAnalytical", 
+                    "FoundationSlabAnalytical", "IsolatedFoundationAnalytical", "LinksAnalytical", "AnalyticalNodes",
+                    "WallFoundationAnalytical", "WallAnalytical", "BoundaryConditions", "InternalLoads",
+                    "LoadCases", "Loads"
                 };
             if (stackedItems[onIndex] is PulldownButton pdbOn)
             {
@@ -158,7 +164,7 @@
                     if (c.Equals("Separator"))
                         pdbOn.AddSeparator();
                     else
-                        pdbOn.AddPushButton(GetCategoryOnOffPushButtonData(c, 0, intF, assembly));
+                        pdbOn.AddPushButton(GetCategoryOnOffPushButtonData(c, true, intF, assembly));
                 });
             }
 
@@ -169,7 +175,7 @@
                     if (c.Equals("Separator"))
                         pdbOff.AddSeparator();
                     else
-                        pdbOff.AddPushButton(GetCategoryOnOffPushButtonData(c, 1, intF, assembly));
+                        pdbOff.AddPushButton(GetCategoryOnOffPushButtonData(c, false, intF, assembly));
                 });
             }
 
@@ -191,45 +197,49 @@
             panel.AddItem(copingDistancePushButtonData);
         }
 
-        private static PushButtonData GetCategoryOnOffPushButtonData(string name, int onOff, ModPlusConnector intF, string assembly)
+        private static PushButtonData GetCategoryOnOffPushButtonData(
+            string name, bool isOn, IModPlusFunctionInterface intF, string assembly)
         {
-            if (onOff == 0) //// on
+            var showHide = isOn ? "Show" : "Hide";
+
+            // Большое изображение задавать обязательно, иначе не отображается малое
+            var pbd = new PushButtonData(
+                name, Language.GetItem(LangItem, name), assembly, $"mprTools.Commands.{name}{showHide}")
             {
-                // Большое изображение задавать обязательно, иначе не отображается малое
-                var pbd = new PushButtonData(name, Language.GetItem(LangItem, name), assembly, $"mprTools.Commands.{name}Show")
-                {
-                    Image = GetIconForCategoryOnOff(name, onOff, intF),
-                    LargeImage = GetIconForCategoryOnOff(name, onOff, intF)
-                };
-                pbd.SetContextualHelp(new ContextualHelp(ContextualHelpType.Url, ModPlus_Revit.App.RibbonBuilder.GetHelpUrl(intF.Name)));
-                return pbd;
-            }
-            else
-            {
-                var pbd = new PushButtonData(name, Language.GetItem(LangItem, name), assembly, $"mprTools.Commands.{name}Hide")
-                {
-                    Image = GetIconForCategoryOnOff(name, onOff, intF),
-                    LargeImage = GetIconForCategoryOnOff(name, onOff, intF)
-                };
-                pbd.SetContextualHelp(new ContextualHelp(ContextualHelpType.Url, ModPlus_Revit.App.RibbonBuilder.GetHelpUrl(intF.Name)));
-                return pbd;
-            }
+                Image = GetIconForCategoryOnOff(name, isOn, intF),
+                LargeImage = GetIconForCategoryOnOff(name, isOn, intF)
+            };
+            pbd.SetContextualHelp(
+                new ContextualHelp(ContextualHelpType.Url, ModPlus_Revit.App.RibbonBuilder.GetHelpUrl(intF.Name)));
+            return pbd;
         }
 
-        private static BitmapImage GetIconForCategoryOnOff(string name, int onOff, ModPlusConnector intF)
+        private static BitmapImage GetIconForCategoryOnOff(string name, bool isOn, IModPlusFunctionInterface intF)
         {
-            if (onOff == 0) //// on
+            if (name.Contains("Analytical") || name.Contains("BoundaryConditions") || name.Contains("Load"))
             {
-                return new BitmapImage(
-                    new Uri(
-                        "pack://application:,,,/mprTools_" + intF.AvailProductExternalVersion +
-                        ";component/Icons/CategoryOnOff/" + name + "On_16x16.png", UriKind.RelativeOrAbsolute));
+                if (isOn)
+                {
+                    return new BitmapImage(new Uri(
+                        $"pack://application:,,,/mprTools_{intF.AvailProductExternalVersion};component/Icons/" +
+                        "CategoryOnOff/AnalyticalOn_16x16.png", UriKind.RelativeOrAbsolute));
+                }
+
+                return new BitmapImage(new Uri(
+                    $"pack://application:,,,/mprTools_{intF.AvailProductExternalVersion};component/Icons/" +
+                    "CategoryOnOff/AnalyticalOff_16x16.png", UriKind.RelativeOrAbsolute));
             }
 
-            return new BitmapImage(
-                new Uri(
-                    "pack://application:,,,/mprTools_" + intF.AvailProductExternalVersion +
-                    ";component/Icons/CategoryOnOff/" + name + "Off_16x16.png", UriKind.RelativeOrAbsolute));
+            if (isOn)
+            {
+                return new BitmapImage(new Uri(
+                    $"pack://application:,,,/mprTools_{intF.AvailProductExternalVersion};component/Icons/" +
+                    $"CategoryOnOff/{name}On_16x16.png", UriKind.RelativeOrAbsolute));
+            }
+
+            return new BitmapImage(new Uri(
+                $"pack://application:,,,/mprTools_{intF.AvailProductExternalVersion};component/Icons/" +
+                $"CategoryOnOff/{name}Off_16x16.png", UriKind.RelativeOrAbsolute));
         }
     }
 }
