@@ -12,11 +12,7 @@ namespace mprTools
 
         public string Name => "mprTools";
         
-#if R2015
-        public string AvailProductExternalVersion => "2015";
-#elif R2016
-        public string AvailProductExternalVersion => "2016";
-#elif R2017
+#if R2017
         public string AvailProductExternalVersion => "2017";
 #elif R2018
         public string AvailProductExternalVersion => "2018";

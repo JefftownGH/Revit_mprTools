@@ -63,22 +63,11 @@
 
         private void CreateRibbonTab(UIControlledApplication application)
         {
-            RibbonPanel panel = null;
-            const string tabName = "ModPlus";
-            ModPlus_Revit.App.RibbonBuilder.CreateModPlusTabIfNoExist(application);
-            var rPanels = application.GetRibbonPanels(tabName);
-            foreach (RibbonPanel rPanel in rPanels)
-            {
-                if (rPanel.Name.Equals(Language.TryGetCuiLocalGroupName("Утилиты")))
-                {
-                    panel = rPanel;
-                    break;
-                }
-            }
-
-            if (panel == null)
-                panel = application.CreateRibbonPanel(tabName, Language.TryGetCuiLocalGroupName("Утилиты"));
-
+            var panel = ModPlus_Revit.App.RibbonBuilder.GetOrCreateRibbonPanel(
+                application,
+                "ModPlus",
+                Language.TryGetCuiLocalGroupName("Утилиты"));
+            
             // interface of current ModPlus function
             var intF = new ModPlusConnector();
             var assembly = Assembly.GetExecutingAssembly().Location;
