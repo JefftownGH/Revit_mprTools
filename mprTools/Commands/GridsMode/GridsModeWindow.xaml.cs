@@ -22,7 +22,6 @@
 
         private void BtSwitchTo2D_OnClick(object sender, RoutedEventArgs e)
         {
-#if !R2015
             try
             {
                 Hide();
@@ -50,12 +49,10 @@
                 ExceptionBox.Show(exception);
                 ShowDialog();
             }
-#endif
         }
 
         private void BtSwitchTo3D_OnClick(object sender, RoutedEventArgs e)
         {
-#if !R2015
             try
             {
                 Hide();
@@ -83,12 +80,10 @@
                 ExceptionBox.Show(exception);
                 ShowDialog();
             }
-#endif
         }
 
         private void BtInvertGridsMode_OnClick(object sender, RoutedEventArgs e)
         {
-#if !R2015
             try
             {
                 Hide();
@@ -119,9 +114,8 @@
                 ExceptionBox.Show(exception);
                 ShowDialog();
             }
-#endif
         }
-#if !R2015
+
         private static void SwitchDatumExtentType(View view, IList<Element> grids, DatumExtentType datumExtentType)
         {
             foreach (var element in grids)
@@ -131,6 +125,5 @@
                 grid.SetDatumExtentType(DatumEnds.End1, view, datumExtentType);
             }
         }
-#endif
     }
 }

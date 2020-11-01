@@ -18,7 +18,9 @@
 
         public Result Execute(ExternalCommandData commandData, ref string message, ElementSet elements)
         {
+#if !DEBUG
             Statistic.SendCommandStarting("mprRebarsWithoutHost", new ModPlusConnector().AvailProductExternalVersion);
+#endif
             try
             {
                 var doc = commandData.Application.ActiveUIDocument.Document;
@@ -47,11 +49,7 @@
 
                 taskDialog.MainContent =
                     //// В текущем проекте найдено:
-                    Language.GetItem(LangItem, "m3") + Environment.NewLine +
-                    //// Арматурные стержни:
-                    Language.GetItem(LangItem, "m4") + " " + rebars.Count + Environment.NewLine +
-                    //// Арматурные стержни в системе:
-                    Language.GetItem(LangItem, "m5") + " " + rebarInSystems.Count;
+                    $"{Language.GetItem(LangItem, "m3")}{Environment.NewLine}{Language.GetItem(LangItem, "m4")} {rebars.Count}{Environment.NewLine}{Language.GetItem(LangItem, "m5")} {rebarInSystems.Count}";
 
                 taskDialog.AddCommandLink(
                     TaskDialogCommandLinkId.CommandLink1,
@@ -83,13 +81,10 @@
                         {
                             var hostSolids = GetHostSolids(hostDictionary, hostId, doc);
 
-#if R2015 || R2016
-                            var rebarCurves = rebar.GetCenterlineCurves(false, false, false).ToList();
-#else
-                            var rebarCurves = 
+                            var rebarCurves =
                                 rebar.GetCenterlineCurves(false, false, false, MultiplanarOption.IncludeAllMultiplanarCurves, 0)
                                     .ToList();
-#endif
+
                             if (rebar.LayoutRule == RebarLayoutRule.Single)
                             {
                                 if (!IntersectWithSolids(rebarCurves, hostSolids))
@@ -126,9 +121,8 @@
                     {
                         // Арматурные стержни, находящиеся вне основы или выступающие за основу (при компоновке):
                         taskDialog.MainContent +=
-                            Environment.NewLine + Language.GetItem(LangItem, "m8") +
-                            " " + outsideHostRebars.Count;
-                        
+                            $"{Environment.NewLine}{Language.GetItem(LangItem, "m8")} {outsideHostRebars.Count}";
+
                         // Выбрать арматурные стержни
                         taskDialog.AddCommandLink(TaskDialogCommandLinkId.CommandLink1, Language.GetItem(LangItem, "m9"));
                         if (noHostRebars.Any() || systemsOutsideHost.Any())
@@ -139,9 +133,8 @@
                     {
                         // Арматура, не имеющая основы:
                         taskDialog.MainContent +=
-                            Environment.NewLine + Language.GetItem(LangItem, "m10") +
-                            " " + noHostRebars.Count;
-                        
+                            $"{Environment.NewLine}{Language.GetItem(LangItem, "m10")} {noHostRebars.Count}";
+
                         // Выбрать арматурные стержни
                         taskDialog.AddCommandLink(TaskDialogCommandLinkId.CommandLink2, Language.GetItem(LangItem, "m9"));
                         if (outsideHostRebars.Any() || systemsOutsideHost.Any())
@@ -152,9 +145,8 @@
                     {
                         // Арматурные стержни в системе, выступающие за основу:
                         taskDialog.MainContent +=
-                            Environment.NewLine + Language.GetItem(LangItem, "m11") +
-                            " " + systemsOutsideHost.Count;
-                        
+                            $"{Environment.NewLine}{Language.GetItem(LangItem, "m11")} {systemsOutsideHost.Count}";
+
                         // Выбрать системы
                         taskDialog.AddCommandLink(TaskDialogCommandLinkId.CommandLink3, Language.GetItem(LangItem, "m12"));
                         if (outsideHostRebars.Any() || noHostRebars.Any())
@@ -166,7 +158,7 @@
                         allElementIds.AddRange(outsideHostRebars);
                         allElementIds.AddRange(noHostRebars);
                         allElementIds.AddRange(systemsOutsideHost);
-                        
+
                         // Выбрать все
                         taskDialog.AddCommandLink(TaskDialogCommandLinkId.CommandLink4, Language.GetItem(LangItem, "m13"));
                     }

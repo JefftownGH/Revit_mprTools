@@ -19,7 +19,9 @@ namespace mprTools.Commands
     {
         public Result Execute(ExternalCommandData commandData, ref string message, ElementSet elements)
         {
-            Statistic.SendCommandStarting("mprCategoryOnOff", new ModPlusConnector().AvailProductExternalVersion);
+#if !DEBUG
+            ModPlusAPI.Statistic.SendCommandStarting("mprCategoryOnOff", new ModPlusConnector().AvailProductExternalVersion);
+#endif
             return ShowHideHelper.ShowCategory(commandData, BuiltInCategory.OST_Walls, "Walls", ViewGraphicsOverrideType.Model);
         }
     }
@@ -29,7 +31,9 @@ namespace mprTools.Commands
     {
         public Result Execute(ExternalCommandData commandData, ref string message, ElementSet elements)
         {
-            Statistic.SendCommandStarting("mprCategoryOnOff", new ModPlusConnector().AvailProductExternalVersion);
+#if !DEBUG
+            ModPlusAPI.Statistic.SendCommandStarting("mprCategoryOnOff", new ModPlusConnector().AvailProductExternalVersion);
+#endif
             return ShowHideHelper.ShowCategory(commandData, BuiltInCategory.OST_Windows, "Windows", ViewGraphicsOverrideType.Model);
         }
     }
@@ -39,7 +43,9 @@ namespace mprTools.Commands
     {
         public Result Execute(ExternalCommandData commandData, ref string message, ElementSet elements)
         {
-            Statistic.SendCommandStarting("mprCategoryOnOff", new ModPlusConnector().AvailProductExternalVersion);
+#if !DEBUG
+            ModPlusAPI.Statistic.SendCommandStarting("mprCategoryOnOff", new ModPlusConnector().AvailProductExternalVersion);
+#endif
             return ShowHideHelper.ShowCategory(commandData, BuiltInCategory.OST_Doors, "Doors", ViewGraphicsOverrideType.Model);
         }
     }
@@ -49,7 +55,9 @@ namespace mprTools.Commands
     {
         public Result Execute(ExternalCommandData commandData, ref string message, ElementSet elements)
         {
-            Statistic.SendCommandStarting("mprCategoryOnOff", new ModPlusConnector().AvailProductExternalVersion);
+#if !DEBUG
+            ModPlusAPI.Statistic.SendCommandStarting("mprCategoryOnOff", new ModPlusConnector().AvailProductExternalVersion);
+#endif
             return ShowHideHelper.ShowCategory(commandData, "Tags", ViewGraphicsOverrideType.Annotation);
         }
     }
@@ -59,7 +67,9 @@ namespace mprTools.Commands
     {
         public Result Execute(ExternalCommandData commandData, ref string message, ElementSet elements)
         {
-            Statistic.SendCommandStarting("mprCategoryOnOff", new ModPlusConnector().AvailProductExternalVersion);
+#if !DEBUG
+            ModPlusAPI.Statistic.SendCommandStarting("mprCategoryOnOff", new ModPlusConnector().AvailProductExternalVersion);
+#endif
             return ShowHideHelper.ShowCategory(commandData, BuiltInCategory.OST_Floors, "Floors", ViewGraphicsOverrideType.Model);
         }
     }
@@ -69,7 +79,9 @@ namespace mprTools.Commands
     {
         public Result Execute(ExternalCommandData commandData, ref string message, ElementSet elements)
         {
-            Statistic.SendCommandStarting("mprCategoryOnOff", new ModPlusConnector().AvailProductExternalVersion);
+#if !DEBUG
+            ModPlusAPI.Statistic.SendCommandStarting("mprCategoryOnOff", new ModPlusConnector().AvailProductExternalVersion);
+#endif
             return ShowHideHelper.ShowCategory(commandData, "Columns", ViewGraphicsOverrideType.Model);
         }
     }
@@ -79,7 +91,9 @@ namespace mprTools.Commands
     {
         public Result Execute(ExternalCommandData commandData, ref string message, ElementSet elements)
         {
-            Statistic.SendCommandStarting("mprCategoryOnOff", new ModPlusConnector().AvailProductExternalVersion);
+#if !DEBUG
+            ModPlusAPI.Statistic.SendCommandStarting("mprCategoryOnOff", new ModPlusConnector().AvailProductExternalVersion);
+#endif
             return ShowHideHelper.ShowCategory(commandData, BuiltInCategory.OST_Grids, "Grids", ViewGraphicsOverrideType.Annotation);
         }
     }
@@ -89,7 +103,9 @@ namespace mprTools.Commands
     {
         public Result Execute(ExternalCommandData commandData, ref string message, ElementSet elements)
         {
-            Statistic.SendCommandStarting("mprCategoryOnOff", new ModPlusConnector().AvailProductExternalVersion);
+#if !DEBUG
+            ModPlusAPI.Statistic.SendCommandStarting("mprCategoryOnOff", new ModPlusConnector().AvailProductExternalVersion);
+#endif
             return ShowHideHelper.ShowCategory(commandData, BuiltInCategory.OST_Levels, "Levels", ViewGraphicsOverrideType.Annotation);
         }
     }
@@ -99,7 +115,9 @@ namespace mprTools.Commands
     {
         public Result Execute(ExternalCommandData commandData, ref string message, ElementSet elements)
         {
-            Statistic.SendCommandStarting("mprCategoryOnOff", new ModPlusConnector().AvailProductExternalVersion);
+#if !DEBUG
+            ModPlusAPI.Statistic.SendCommandStarting("mprCategoryOnOff", new ModPlusConnector().AvailProductExternalVersion);
+#endif
             return ShowHideHelper.ShowCategory(commandData, BuiltInCategory.OST_Ramps, "Ramps", ViewGraphicsOverrideType.Model);
         }
     }
@@ -109,7 +127,9 @@ namespace mprTools.Commands
     {
         public Result Execute(ExternalCommandData commandData, ref string message, ElementSet elements)
         {
-            Statistic.SendCommandStarting("mprCategoryOnOff", new ModPlusConnector().AvailProductExternalVersion);
+#if !DEBUG
+            ModPlusAPI.Statistic.SendCommandStarting("mprCategoryOnOff", new ModPlusConnector().AvailProductExternalVersion);
+#endif
             return ShowHideHelper.ShowCategory(commandData, BuiltInCategory.OST_Stairs, "Stairs", ViewGraphicsOverrideType.Model);
         }
     }
@@ -119,7 +139,9 @@ namespace mprTools.Commands
     {
         public Result Execute(ExternalCommandData commandData, ref string message, ElementSet elements)
         {
-            Statistic.SendCommandStarting("mprCategoryOnOff", new ModPlusConnector().AvailProductExternalVersion);
+#if !DEBUG
+            ModPlusAPI.Statistic.SendCommandStarting("mprCategoryOnOff", new ModPlusConnector().AvailProductExternalVersion);
+#endif
             return ShowHideHelper.ShowCategory(
                 commandData,
                 new List<BuiltInCategory> { BuiltInCategory.OST_Railings, BuiltInCategory.OST_StairsRailing },
@@ -132,7 +154,9 @@ namespace mprTools.Commands
     {
         public Result Execute(ExternalCommandData commandData, ref string message, ElementSet elements)
         {
-            Statistic.SendCommandStarting("mprCategoryOnOff", new ModPlusConnector().AvailProductExternalVersion);
+#if !DEBUG
+            ModPlusAPI.Statistic.SendCommandStarting("mprCategoryOnOff", new ModPlusConnector().AvailProductExternalVersion);
+#endif
             return ShowHideHelper.ShowCategory(commandData, BuiltInCategory.OST_Roofs, "Roofs", ViewGraphicsOverrideType.Model);
         }
     }
@@ -142,7 +166,9 @@ namespace mprTools.Commands
     {
         public Result Execute(ExternalCommandData commandData, ref string message, ElementSet elements)
         {
-            Statistic.SendCommandStarting("mprCategoryOnOff", new ModPlusConnector().AvailProductExternalVersion);
+#if !DEBUG
+            ModPlusAPI.Statistic.SendCommandStarting("mprCategoryOnOff", new ModPlusConnector().AvailProductExternalVersion);
+#endif
             return ShowHideHelper.ShowCategory(commandData, BuiltInCategory.OST_Ceilings, "Ceilings", ViewGraphicsOverrideType.Model);
         }
     }
@@ -152,7 +178,9 @@ namespace mprTools.Commands
     {
         public Result Execute(ExternalCommandData commandData, ref string message, ElementSet elements)
         {
-            Statistic.SendCommandStarting("mprCategoryOnOff", new ModPlusConnector().AvailProductExternalVersion);
+#if !DEBUG
+            ModPlusAPI.Statistic.SendCommandStarting("mprCategoryOnOff", new ModPlusConnector().AvailProductExternalVersion);
+#endif
             return ShowHideHelper.ShowCategory(commandData, BuiltInCategory.OST_Elev, "Elevations", ViewGraphicsOverrideType.Annotation);
         }
     }
@@ -162,7 +190,9 @@ namespace mprTools.Commands
     {
         public Result Execute(ExternalCommandData commandData, ref string message, ElementSet elements)
         {
-            Statistic.SendCommandStarting("mprCategoryOnOff", new ModPlusConnector().AvailProductExternalVersion);
+#if !DEBUG
+            ModPlusAPI.Statistic.SendCommandStarting("mprCategoryOnOff", new ModPlusConnector().AvailProductExternalVersion);
+#endif
             return ShowHideHelper.ShowCategory(commandData, BuiltInCategory.OST_Sections, "Sections", ViewGraphicsOverrideType.Annotation);
         }
     }
@@ -172,7 +202,9 @@ namespace mprTools.Commands
     {
         public Result Execute(ExternalCommandData commandData, ref string message, ElementSet elements)
         {
-            Statistic.SendCommandStarting("mprCategoryOnOff", new ModPlusConnector().AvailProductExternalVersion);
+#if !DEBUG
+            ModPlusAPI.Statistic.SendCommandStarting("mprCategoryOnOff", new ModPlusConnector().AvailProductExternalVersion);
+#endif
             return ShowHideHelper.ShowCategory(commandData, new List<BuiltInCategory>
             {
                 BuiltInCategory.OST_DetailComponents,
@@ -192,7 +224,9 @@ namespace mprTools.Commands
     {
         public Result Execute(ExternalCommandData commandData, ref string message, ElementSet elements)
         {
-            Statistic.SendCommandStarting("mprCategoryOnOff", new ModPlusConnector().AvailProductExternalVersion);
+#if !DEBUG
+            ModPlusAPI.Statistic.SendCommandStarting("mprCategoryOnOff", new ModPlusConnector().AvailProductExternalVersion);
+#endif
             return ShowHideHelper.ShowCategory(
                 commandData, BuiltInCategory.OST_CLines, "ReferencePlane", ViewGraphicsOverrideType.Annotation);
         }
@@ -203,7 +237,9 @@ namespace mprTools.Commands
     {
         public Result Execute(ExternalCommandData commandData, ref string message, ElementSet elements)
         {
-            Statistic.SendCommandStarting("mprCategoryOnOff", new ModPlusConnector().AvailProductExternalVersion);
+#if !DEBUG
+            ModPlusAPI.Statistic.SendCommandStarting("mprCategoryOnOff", new ModPlusConnector().AvailProductExternalVersion);
+#endif
             return ShowHideHelper.ShowCategory(
                 commandData, BuiltInCategory.OST_StructuralFraming, "StructuralFraming", ViewGraphicsOverrideType.Model);
         }
@@ -214,7 +250,9 @@ namespace mprTools.Commands
     {
         public Result Execute(ExternalCommandData commandData, ref string message, ElementSet elements)
         {
-            Statistic.SendCommandStarting("mprCategoryOnOff", new ModPlusConnector().AvailProductExternalVersion);
+#if !DEBUG
+            ModPlusAPI.Statistic.SendCommandStarting("mprCategoryOnOff", new ModPlusConnector().AvailProductExternalVersion);
+#endif
             return ShowHideHelper.ShowCategory(
                 commandData, BuiltInCategory.OST_StructuralFoundation, "StructuralFoundation", ViewGraphicsOverrideType.Model);
         }
@@ -227,7 +265,9 @@ namespace mprTools.Commands
     {
         public Result Execute(ExternalCommandData commandData, ref string message, ElementSet elements)
         {
-            Statistic.SendCommandStarting("mprCategoryOnOff", new ModPlusConnector().AvailProductExternalVersion);
+#if !DEBUG
+            ModPlusAPI.Statistic.SendCommandStarting("mprCategoryOnOff", new ModPlusConnector().AvailProductExternalVersion);
+#endif
             return ShowHideHelper.ShowCategory(
                 commandData, BuiltInCategory.OST_BeamAnalytical, "BeamAnalytical", ViewGraphicsOverrideType.AnalyticalModel);
         }
@@ -238,7 +278,9 @@ namespace mprTools.Commands
     {
         public Result Execute(ExternalCommandData commandData, ref string message, ElementSet elements)
         {
-            Statistic.SendCommandStarting("mprCategoryOnOff", new ModPlusConnector().AvailProductExternalVersion);
+#if !DEBUG
+            ModPlusAPI.Statistic.SendCommandStarting("mprCategoryOnOff", new ModPlusConnector().AvailProductExternalVersion);
+#endif
             return ShowHideHelper.ShowCategory(
                 commandData, BuiltInCategory.OST_BraceAnalytical, "BraceAnalytical", ViewGraphicsOverrideType.AnalyticalModel);
         }
@@ -249,7 +291,9 @@ namespace mprTools.Commands
     {
         public Result Execute(ExternalCommandData commandData, ref string message, ElementSet elements)
         {
-            Statistic.SendCommandStarting("mprCategoryOnOff", new ModPlusConnector().AvailProductExternalVersion);
+#if !DEBUG
+            ModPlusAPI.Statistic.SendCommandStarting("mprCategoryOnOff", new ModPlusConnector().AvailProductExternalVersion);
+#endif
             return ShowHideHelper.ShowCategory(
                 commandData, BuiltInCategory.OST_ColumnAnalytical, "ColumnAnalytical", ViewGraphicsOverrideType.AnalyticalModel);
         }
@@ -260,7 +304,9 @@ namespace mprTools.Commands
     {
         public Result Execute(ExternalCommandData commandData, ref string message, ElementSet elements)
         {
-            Statistic.SendCommandStarting("mprCategoryOnOff", new ModPlusConnector().AvailProductExternalVersion);
+#if !DEBUG
+            ModPlusAPI.Statistic.SendCommandStarting("mprCategoryOnOff", new ModPlusConnector().AvailProductExternalVersion);
+#endif
             return ShowHideHelper.ShowCategory(
                 commandData, BuiltInCategory.OST_FloorAnalytical, "FloorAnalytical", ViewGraphicsOverrideType.AnalyticalModel);
         }
@@ -271,7 +317,9 @@ namespace mprTools.Commands
     {
         public Result Execute(ExternalCommandData commandData, ref string message, ElementSet elements)
         {
-            Statistic.SendCommandStarting("mprCategoryOnOff", new ModPlusConnector().AvailProductExternalVersion);
+#if !DEBUG
+            ModPlusAPI.Statistic.SendCommandStarting("mprCategoryOnOff", new ModPlusConnector().AvailProductExternalVersion);
+#endif
             return ShowHideHelper.ShowCategory(
                 commandData, BuiltInCategory.OST_FoundationSlabAnalytical, "FoundationSlabAnalytical", ViewGraphicsOverrideType.AnalyticalModel);
         }
@@ -282,7 +330,9 @@ namespace mprTools.Commands
     {
         public Result Execute(ExternalCommandData commandData, ref string message, ElementSet elements)
         {
-            Statistic.SendCommandStarting("mprCategoryOnOff", new ModPlusConnector().AvailProductExternalVersion);
+#if !DEBUG
+            ModPlusAPI.Statistic.SendCommandStarting("mprCategoryOnOff", new ModPlusConnector().AvailProductExternalVersion);
+#endif
             return ShowHideHelper.ShowCategory(
                 commandData, BuiltInCategory.OST_IsolatedFoundationAnalytical, "IsolatedFoundationAnalytical", ViewGraphicsOverrideType.AnalyticalModel);
         }
@@ -293,7 +343,9 @@ namespace mprTools.Commands
     {
         public Result Execute(ExternalCommandData commandData, ref string message, ElementSet elements)
         {
-            Statistic.SendCommandStarting("mprCategoryOnOff", new ModPlusConnector().AvailProductExternalVersion);
+#if !DEBUG
+            ModPlusAPI.Statistic.SendCommandStarting("mprCategoryOnOff", new ModPlusConnector().AvailProductExternalVersion);
+#endif
             return ShowHideHelper.ShowCategory(
                 commandData, BuiltInCategory.OST_LinksAnalytical, "LinksAnalytical", ViewGraphicsOverrideType.AnalyticalModel);
         }
@@ -304,7 +356,9 @@ namespace mprTools.Commands
     {
         public Result Execute(ExternalCommandData commandData, ref string message, ElementSet elements)
         {
-            Statistic.SendCommandStarting("mprCategoryOnOff", new ModPlusConnector().AvailProductExternalVersion);
+#if !DEBUG
+            ModPlusAPI.Statistic.SendCommandStarting("mprCategoryOnOff", new ModPlusConnector().AvailProductExternalVersion);
+#endif
             return ShowHideHelper.ShowCategory(
                 commandData, BuiltInCategory.OST_AnalyticalNodes, "AnalyticalNodes", ViewGraphicsOverrideType.AnalyticalModel);
         }
@@ -315,7 +369,9 @@ namespace mprTools.Commands
     {
         public Result Execute(ExternalCommandData commandData, ref string message, ElementSet elements)
         {
-            Statistic.SendCommandStarting("mprCategoryOnOff", new ModPlusConnector().AvailProductExternalVersion);
+#if !DEBUG
+            ModPlusAPI.Statistic.SendCommandStarting("mprCategoryOnOff", new ModPlusConnector().AvailProductExternalVersion);
+#endif
             return ShowHideHelper.ShowCategory(
                 commandData, BuiltInCategory.OST_WallFoundationAnalytical, "WallFoundationAnalytical", ViewGraphicsOverrideType.AnalyticalModel);
         }
@@ -326,7 +382,9 @@ namespace mprTools.Commands
     {
         public Result Execute(ExternalCommandData commandData, ref string message, ElementSet elements)
         {
-            Statistic.SendCommandStarting("mprCategoryOnOff", new ModPlusConnector().AvailProductExternalVersion);
+#if !DEBUG
+            ModPlusAPI.Statistic.SendCommandStarting("mprCategoryOnOff", new ModPlusConnector().AvailProductExternalVersion);
+#endif
             return ShowHideHelper.ShowCategory(
                 commandData, BuiltInCategory.OST_WallAnalytical, "WallAnalytical", ViewGraphicsOverrideType.AnalyticalModel);
         }
@@ -337,7 +395,9 @@ namespace mprTools.Commands
     {
         public Result Execute(ExternalCommandData commandData, ref string message, ElementSet elements)
         {
-            Statistic.SendCommandStarting("mprCategoryOnOff", new ModPlusConnector().AvailProductExternalVersion);
+#if !DEBUG
+            ModPlusAPI.Statistic.SendCommandStarting("mprCategoryOnOff", new ModPlusConnector().AvailProductExternalVersion);
+#endif
             return ShowHideHelper.ShowCategory(
                 commandData, BuiltInCategory.OST_BoundaryConditions, "BoundaryConditions", ViewGraphicsOverrideType.AnalyticalModel);
         }
@@ -348,7 +408,9 @@ namespace mprTools.Commands
     {
         public Result Execute(ExternalCommandData commandData, ref string message, ElementSet elements)
         {
-            Statistic.SendCommandStarting("mprCategoryOnOff", new ModPlusConnector().AvailProductExternalVersion);
+#if !DEBUG
+            ModPlusAPI.Statistic.SendCommandStarting("mprCategoryOnOff", new ModPlusConnector().AvailProductExternalVersion);
+#endif
             return ShowHideHelper.ShowCategory(
                 commandData, BuiltInCategory.OST_InternalLoads, "InternalLoads", ViewGraphicsOverrideType.AnalyticalModel);
         }
@@ -359,7 +421,9 @@ namespace mprTools.Commands
     {
         public Result Execute(ExternalCommandData commandData, ref string message, ElementSet elements)
         {
-            Statistic.SendCommandStarting("mprCategoryOnOff", new ModPlusConnector().AvailProductExternalVersion);
+#if !DEBUG
+            ModPlusAPI.Statistic.SendCommandStarting("mprCategoryOnOff", new ModPlusConnector().AvailProductExternalVersion);
+#endif
             return ShowHideHelper.ShowCategory(
                 commandData, BuiltInCategory.OST_LoadCases, "LoadCases", ViewGraphicsOverrideType.AnalyticalModel);
         }
@@ -370,7 +434,9 @@ namespace mprTools.Commands
     {
         public Result Execute(ExternalCommandData commandData, ref string message, ElementSet elements)
         {
-            Statistic.SendCommandStarting("mprCategoryOnOff", new ModPlusConnector().AvailProductExternalVersion);
+#if !DEBUG
+            ModPlusAPI.Statistic.SendCommandStarting("mprCategoryOnOff", new ModPlusConnector().AvailProductExternalVersion);
+#endif
             return ShowHideHelper.ShowCategory(
                 commandData, BuiltInCategory.OST_Loads, "Loads", ViewGraphicsOverrideType.AnalyticalModel);
         }
@@ -381,7 +447,9 @@ namespace mprTools.Commands
     {
         public Result Execute(ExternalCommandData commandData, ref string message, ElementSet elements)
         {
-            Statistic.SendCommandStarting("mprCategoryOnOff", new ModPlusConnector().AvailProductExternalVersion);
+#if !DEBUG
+            ModPlusAPI.Statistic.SendCommandStarting("mprCategoryOnOff", new ModPlusConnector().AvailProductExternalVersion);
+#endif
             return ShowHideHelper.ShowCategory(commandData, new List<BuiltInCategory>
             {
                 BuiltInCategory.OST_BeamAnalytical,
@@ -413,7 +481,9 @@ namespace mprTools.Commands
     {
         public Result Execute(ExternalCommandData commandData, ref string message, ElementSet elements)
         {
-            Statistic.SendCommandStarting("mprCategoryOnOff", new ModPlusConnector().AvailProductExternalVersion);
+#if !DEBUG
+            ModPlusAPI.Statistic.SendCommandStarting("mprCategoryOnOff", new ModPlusConnector().AvailProductExternalVersion);
+#endif
             return ShowHideHelper.HideCategory(commandData, BuiltInCategory.OST_Walls, "Walls", ViewGraphicsOverrideType.Model);
         }
     }
@@ -423,7 +493,9 @@ namespace mprTools.Commands
     {
         public Result Execute(ExternalCommandData commandData, ref string message, ElementSet elements)
         {
-            Statistic.SendCommandStarting("mprCategoryOnOff", new ModPlusConnector().AvailProductExternalVersion);
+#if !DEBUG
+            ModPlusAPI.Statistic.SendCommandStarting("mprCategoryOnOff", new ModPlusConnector().AvailProductExternalVersion);
+#endif
             return ShowHideHelper.HideCategory(commandData, BuiltInCategory.OST_Windows, "Windows", ViewGraphicsOverrideType.Model);
         }
     }
@@ -433,7 +505,9 @@ namespace mprTools.Commands
     {
         public Result Execute(ExternalCommandData commandData, ref string message, ElementSet elements)
         {
-            Statistic.SendCommandStarting("mprCategoryOnOff", new ModPlusConnector().AvailProductExternalVersion);
+#if !DEBUG
+            ModPlusAPI.Statistic.SendCommandStarting("mprCategoryOnOff", new ModPlusConnector().AvailProductExternalVersion);
+#endif
             return ShowHideHelper.HideCategory(commandData, BuiltInCategory.OST_Doors, "Doors", ViewGraphicsOverrideType.Model);
         }
     }
@@ -443,7 +517,9 @@ namespace mprTools.Commands
     {
         public Result Execute(ExternalCommandData commandData, ref string message, ElementSet elements)
         {
-            Statistic.SendCommandStarting("mprCategoryOnOff", new ModPlusConnector().AvailProductExternalVersion);
+#if !DEBUG
+            ModPlusAPI.Statistic.SendCommandStarting("mprCategoryOnOff", new ModPlusConnector().AvailProductExternalVersion);
+#endif
             return ShowHideHelper.HideCategory(commandData, "Tags", ViewGraphicsOverrideType.Annotation);
         }
     }
@@ -453,7 +529,9 @@ namespace mprTools.Commands
     {
         public Result Execute(ExternalCommandData commandData, ref string message, ElementSet elements)
         {
-            Statistic.SendCommandStarting("mprCategoryOnOff", new ModPlusConnector().AvailProductExternalVersion);
+#if !DEBUG
+            ModPlusAPI.Statistic.SendCommandStarting("mprCategoryOnOff", new ModPlusConnector().AvailProductExternalVersion);
+#endif
             return ShowHideHelper.HideCategory(commandData, BuiltInCategory.OST_Floors, "Floors", ViewGraphicsOverrideType.Model);
         }
     }
@@ -463,7 +541,9 @@ namespace mprTools.Commands
     {
         public Result Execute(ExternalCommandData commandData, ref string message, ElementSet elements)
         {
-            Statistic.SendCommandStarting("mprCategoryOnOff", new ModPlusConnector().AvailProductExternalVersion);
+#if !DEBUG
+            ModPlusAPI.Statistic.SendCommandStarting("mprCategoryOnOff", new ModPlusConnector().AvailProductExternalVersion);
+#endif
             return ShowHideHelper.HideCategory(commandData, "Columns", ViewGraphicsOverrideType.Model);
         }
     }
@@ -473,7 +553,9 @@ namespace mprTools.Commands
     {
         public Result Execute(ExternalCommandData commandData, ref string message, ElementSet elements)
         {
-            Statistic.SendCommandStarting("mprCategoryOnOff", new ModPlusConnector().AvailProductExternalVersion);
+#if !DEBUG
+            ModPlusAPI.Statistic.SendCommandStarting("mprCategoryOnOff", new ModPlusConnector().AvailProductExternalVersion);
+#endif
             return ShowHideHelper.HideCategory(commandData, BuiltInCategory.OST_Grids, "Grids", ViewGraphicsOverrideType.Annotation);
         }
     }
@@ -483,7 +565,9 @@ namespace mprTools.Commands
     {
         public Result Execute(ExternalCommandData commandData, ref string message, ElementSet elements)
         {
-            Statistic.SendCommandStarting("mprCategoryOnOff", new ModPlusConnector().AvailProductExternalVersion);
+#if !DEBUG
+            ModPlusAPI.Statistic.SendCommandStarting("mprCategoryOnOff", new ModPlusConnector().AvailProductExternalVersion);
+#endif
             return ShowHideHelper.HideCategory(commandData, BuiltInCategory.OST_Levels, "Levels", ViewGraphicsOverrideType.Annotation);
         }
     }
@@ -493,7 +577,9 @@ namespace mprTools.Commands
     {
         public Result Execute(ExternalCommandData commandData, ref string message, ElementSet elements)
         {
-            Statistic.SendCommandStarting("mprCategoryOnOff", new ModPlusConnector().AvailProductExternalVersion);
+#if !DEBUG
+            ModPlusAPI.Statistic.SendCommandStarting("mprCategoryOnOff", new ModPlusConnector().AvailProductExternalVersion);
+#endif
             return ShowHideHelper.HideCategory(commandData, BuiltInCategory.OST_Ramps, "Ramps", ViewGraphicsOverrideType.Model);
         }
     }
@@ -503,7 +589,9 @@ namespace mprTools.Commands
     {
         public Result Execute(ExternalCommandData commandData, ref string message, ElementSet elements)
         {
-            Statistic.SendCommandStarting("mprCategoryOnOff", new ModPlusConnector().AvailProductExternalVersion);
+#if !DEBUG
+            ModPlusAPI.Statistic.SendCommandStarting("mprCategoryOnOff", new ModPlusConnector().AvailProductExternalVersion);
+#endif
             return ShowHideHelper.HideCategory(commandData, BuiltInCategory.OST_Stairs, "Stairs", ViewGraphicsOverrideType.Model);
         }
     }
@@ -513,7 +601,9 @@ namespace mprTools.Commands
     {
         public Result Execute(ExternalCommandData commandData, ref string message, ElementSet elements)
         {
-            Statistic.SendCommandStarting("mprCategoryOnOff", new ModPlusConnector().AvailProductExternalVersion);
+#if !DEBUG
+            ModPlusAPI.Statistic.SendCommandStarting("mprCategoryOnOff", new ModPlusConnector().AvailProductExternalVersion);
+#endif
             return ShowHideHelper.HideCategory(
                 commandData,
                 new List<BuiltInCategory> { BuiltInCategory.OST_Railings, BuiltInCategory.OST_StairsRailing },
@@ -526,7 +616,9 @@ namespace mprTools.Commands
     {
         public Result Execute(ExternalCommandData commandData, ref string message, ElementSet elements)
         {
-            Statistic.SendCommandStarting("mprCategoryOnOff", new ModPlusConnector().AvailProductExternalVersion);
+#if !DEBUG
+            ModPlusAPI.Statistic.SendCommandStarting("mprCategoryOnOff", new ModPlusConnector().AvailProductExternalVersion);
+#endif
             return ShowHideHelper.HideCategory(commandData, BuiltInCategory.OST_Roofs, "Roofs", ViewGraphicsOverrideType.Model);
         }
     }
@@ -536,7 +628,9 @@ namespace mprTools.Commands
     {
         public Result Execute(ExternalCommandData commandData, ref string message, ElementSet elements)
         {
-            Statistic.SendCommandStarting("mprCategoryOnOff", new ModPlusConnector().AvailProductExternalVersion);
+#if !DEBUG
+            ModPlusAPI.Statistic.SendCommandStarting("mprCategoryOnOff", new ModPlusConnector().AvailProductExternalVersion);
+#endif
             return ShowHideHelper.HideCategory(commandData, BuiltInCategory.OST_Ceilings, "Ceilings", ViewGraphicsOverrideType.Model);
         }
     }
@@ -546,7 +640,9 @@ namespace mprTools.Commands
     {
         public Result Execute(ExternalCommandData commandData, ref string message, ElementSet elements)
         {
-            Statistic.SendCommandStarting("mprCategoryOnOff", new ModPlusConnector().AvailProductExternalVersion);
+#if !DEBUG
+            ModPlusAPI.Statistic.SendCommandStarting("mprCategoryOnOff", new ModPlusConnector().AvailProductExternalVersion);
+#endif
             return ShowHideHelper.HideCategory(commandData, BuiltInCategory.OST_Elev, "Elevations", ViewGraphicsOverrideType.Annotation);
         }
     }
@@ -556,7 +652,9 @@ namespace mprTools.Commands
     {
         public Result Execute(ExternalCommandData commandData, ref string message, ElementSet elements)
         {
-            Statistic.SendCommandStarting("mprCategoryOnOff", new ModPlusConnector().AvailProductExternalVersion);
+#if !DEBUG
+            ModPlusAPI.Statistic.SendCommandStarting("mprCategoryOnOff", new ModPlusConnector().AvailProductExternalVersion);
+#endif
             return ShowHideHelper.HideCategory(commandData, BuiltInCategory.OST_Sections, "Sections", ViewGraphicsOverrideType.Annotation);
         }
     }
@@ -566,7 +664,9 @@ namespace mprTools.Commands
     {
         public Result Execute(ExternalCommandData commandData, ref string message, ElementSet elements)
         {
-            Statistic.SendCommandStarting("mprCategoryOnOff", new ModPlusConnector().AvailProductExternalVersion);
+#if !DEBUG
+            ModPlusAPI.Statistic.SendCommandStarting("mprCategoryOnOff", new ModPlusConnector().AvailProductExternalVersion);
+#endif
             return ShowHideHelper.HideCategory(commandData, new List<BuiltInCategory>
             {
                 BuiltInCategory.OST_DetailComponents,
@@ -586,7 +686,9 @@ namespace mprTools.Commands
     {
         public Result Execute(ExternalCommandData commandData, ref string message, ElementSet elements)
         {
-            Statistic.SendCommandStarting("mprCategoryOnOff", new ModPlusConnector().AvailProductExternalVersion);
+#if !DEBUG
+            ModPlusAPI.Statistic.SendCommandStarting("mprCategoryOnOff", new ModPlusConnector().AvailProductExternalVersion);
+#endif
             return ShowHideHelper.HideCategory(commandData, BuiltInCategory.OST_CLines, "ReferencePlane", ViewGraphicsOverrideType.Annotation);
         }
     }
@@ -596,7 +698,9 @@ namespace mprTools.Commands
     {
         public Result Execute(ExternalCommandData commandData, ref string message, ElementSet elements)
         {
-            Statistic.SendCommandStarting("mprCategoryOnOff", new ModPlusConnector().AvailProductExternalVersion);
+#if !DEBUG
+            ModPlusAPI.Statistic.SendCommandStarting("mprCategoryOnOff", new ModPlusConnector().AvailProductExternalVersion);
+#endif
             return ShowHideHelper.HideCategory(
                 commandData, BuiltInCategory.OST_StructuralFraming, "StructuralFraming", ViewGraphicsOverrideType.Model);
         }
@@ -607,7 +711,9 @@ namespace mprTools.Commands
     {
         public Result Execute(ExternalCommandData commandData, ref string message, ElementSet elements)
         {
-            Statistic.SendCommandStarting("mprCategoryOnOff", new ModPlusConnector().AvailProductExternalVersion);
+#if !DEBUG
+            ModPlusAPI.Statistic.SendCommandStarting("mprCategoryOnOff", new ModPlusConnector().AvailProductExternalVersion);
+#endif
             return ShowHideHelper.HideCategory(
                 commandData, BuiltInCategory.OST_StructuralFoundation, "StructuralFoundation", ViewGraphicsOverrideType.Model);
         }
@@ -620,7 +726,9 @@ namespace mprTools.Commands
     {
         public Result Execute(ExternalCommandData commandData, ref string message, ElementSet elements)
         {
-            Statistic.SendCommandStarting("mprCategoryOnOff", new ModPlusConnector().AvailProductExternalVersion);
+#if !DEBUG
+            ModPlusAPI.Statistic.SendCommandStarting("mprCategoryOnOff", new ModPlusConnector().AvailProductExternalVersion);
+#endif
             return ShowHideHelper.HideCategory(
                 commandData, BuiltInCategory.OST_BeamAnalytical, "BeamAnalytical", ViewGraphicsOverrideType.AnalyticalModel);
         }
@@ -631,7 +739,9 @@ namespace mprTools.Commands
     {
         public Result Execute(ExternalCommandData commandData, ref string message, ElementSet elements)
         {
-            Statistic.SendCommandStarting("mprCategoryOnOff", new ModPlusConnector().AvailProductExternalVersion);
+#if !DEBUG
+            ModPlusAPI.Statistic.SendCommandStarting("mprCategoryOnOff", new ModPlusConnector().AvailProductExternalVersion);
+#endif
             return ShowHideHelper.HideCategory(
                 commandData, BuiltInCategory.OST_BraceAnalytical, "BraceAnalytical", ViewGraphicsOverrideType.AnalyticalModel);
         }
@@ -642,7 +752,9 @@ namespace mprTools.Commands
     {
         public Result Execute(ExternalCommandData commandData, ref string message, ElementSet elements)
         {
-            Statistic.SendCommandStarting("mprCategoryOnOff", new ModPlusConnector().AvailProductExternalVersion);
+#if !DEBUG
+            ModPlusAPI.Statistic.SendCommandStarting("mprCategoryOnOff", new ModPlusConnector().AvailProductExternalVersion);
+#endif
             return ShowHideHelper.HideCategory(
                 commandData, BuiltInCategory.OST_ColumnAnalytical, "ColumnAnalytical", ViewGraphicsOverrideType.AnalyticalModel);
         }
@@ -653,7 +765,9 @@ namespace mprTools.Commands
     {
         public Result Execute(ExternalCommandData commandData, ref string message, ElementSet elements)
         {
-            Statistic.SendCommandStarting("mprCategoryOnOff", new ModPlusConnector().AvailProductExternalVersion);
+#if !DEBUG
+            ModPlusAPI.Statistic.SendCommandStarting("mprCategoryOnOff", new ModPlusConnector().AvailProductExternalVersion);
+#endif
             return ShowHideHelper.HideCategory(
                 commandData, BuiltInCategory.OST_FloorAnalytical, "FloorAnalytical", ViewGraphicsOverrideType.AnalyticalModel);
         }
@@ -664,7 +778,9 @@ namespace mprTools.Commands
     {
         public Result Execute(ExternalCommandData commandData, ref string message, ElementSet elements)
         {
-            Statistic.SendCommandStarting("mprCategoryOnOff", new ModPlusConnector().AvailProductExternalVersion);
+#if !DEBUG
+            ModPlusAPI.Statistic.SendCommandStarting("mprCategoryOnOff", new ModPlusConnector().AvailProductExternalVersion);
+#endif
             return ShowHideHelper.HideCategory(
                 commandData, BuiltInCategory.OST_FoundationSlabAnalytical, "FoundationSlabAnalytical", ViewGraphicsOverrideType.AnalyticalModel);
         }
@@ -675,7 +791,9 @@ namespace mprTools.Commands
     {
         public Result Execute(ExternalCommandData commandData, ref string message, ElementSet elements)
         {
-            Statistic.SendCommandStarting("mprCategoryOnOff", new ModPlusConnector().AvailProductExternalVersion);
+#if !DEBUG
+            ModPlusAPI.Statistic.SendCommandStarting("mprCategoryOnOff", new ModPlusConnector().AvailProductExternalVersion);
+#endif
             return ShowHideHelper.HideCategory(
                 commandData, BuiltInCategory.OST_IsolatedFoundationAnalytical, "IsolatedFoundationAnalytical", ViewGraphicsOverrideType.AnalyticalModel);
         }
@@ -686,7 +804,9 @@ namespace mprTools.Commands
     {
         public Result Execute(ExternalCommandData commandData, ref string message, ElementSet elements)
         {
-            Statistic.SendCommandStarting("mprCategoryOnOff", new ModPlusConnector().AvailProductExternalVersion);
+#if !DEBUG
+            ModPlusAPI.Statistic.SendCommandStarting("mprCategoryOnOff", new ModPlusConnector().AvailProductExternalVersion);
+#endif
             return ShowHideHelper.HideCategory(
                 commandData, BuiltInCategory.OST_LinksAnalytical, "LinksAnalytical", ViewGraphicsOverrideType.AnalyticalModel);
         }
@@ -697,7 +817,9 @@ namespace mprTools.Commands
     {
         public Result Execute(ExternalCommandData commandData, ref string message, ElementSet elements)
         {
-            Statistic.SendCommandStarting("mprCategoryOnOff", new ModPlusConnector().AvailProductExternalVersion);
+#if !DEBUG
+            ModPlusAPI.Statistic.SendCommandStarting("mprCategoryOnOff", new ModPlusConnector().AvailProductExternalVersion);
+#endif
             return ShowHideHelper.HideCategory(
                 commandData, BuiltInCategory.OST_AnalyticalNodes, "AnalyticalNodes", ViewGraphicsOverrideType.AnalyticalModel);
         }
@@ -708,7 +830,9 @@ namespace mprTools.Commands
     {
         public Result Execute(ExternalCommandData commandData, ref string message, ElementSet elements)
         {
-            Statistic.SendCommandStarting("mprCategoryOnOff", new ModPlusConnector().AvailProductExternalVersion);
+#if !DEBUG
+            ModPlusAPI.Statistic.SendCommandStarting("mprCategoryOnOff", new ModPlusConnector().AvailProductExternalVersion);
+#endif
             return ShowHideHelper.HideCategory(
                 commandData, BuiltInCategory.OST_WallFoundationAnalytical, "WallFoundationAnalytical", ViewGraphicsOverrideType.AnalyticalModel);
         }
@@ -719,7 +843,9 @@ namespace mprTools.Commands
     {
         public Result Execute(ExternalCommandData commandData, ref string message, ElementSet elements)
         {
-            Statistic.SendCommandStarting("mprCategoryOnOff", new ModPlusConnector().AvailProductExternalVersion);
+#if !DEBUG
+            ModPlusAPI.Statistic.SendCommandStarting("mprCategoryOnOff", new ModPlusConnector().AvailProductExternalVersion);
+#endif
             return ShowHideHelper.HideCategory(
                 commandData, BuiltInCategory.OST_WallAnalytical, "WallAnalytical", ViewGraphicsOverrideType.AnalyticalModel);
         }
@@ -730,7 +856,9 @@ namespace mprTools.Commands
     {
         public Result Execute(ExternalCommandData commandData, ref string message, ElementSet elements)
         {
-            Statistic.SendCommandStarting("mprCategoryOnOff", new ModPlusConnector().AvailProductExternalVersion);
+#if !DEBUG
+            ModPlusAPI.Statistic.SendCommandStarting("mprCategoryOnOff", new ModPlusConnector().AvailProductExternalVersion);
+#endif
             return ShowHideHelper.HideCategory(
                 commandData, BuiltInCategory.OST_BoundaryConditions, "BoundaryConditions", ViewGraphicsOverrideType.AnalyticalModel);
         }
@@ -741,7 +869,9 @@ namespace mprTools.Commands
     {
         public Result Execute(ExternalCommandData commandData, ref string message, ElementSet elements)
         {
-            Statistic.SendCommandStarting("mprCategoryOnOff", new ModPlusConnector().AvailProductExternalVersion);
+#if !DEBUG
+            ModPlusAPI.Statistic.SendCommandStarting("mprCategoryOnOff", new ModPlusConnector().AvailProductExternalVersion);
+#endif
             return ShowHideHelper.HideCategory(
                 commandData, BuiltInCategory.OST_InternalLoads, "InternalLoads", ViewGraphicsOverrideType.AnalyticalModel);
         }
@@ -752,7 +882,9 @@ namespace mprTools.Commands
     {
         public Result Execute(ExternalCommandData commandData, ref string message, ElementSet elements)
         {
-            Statistic.SendCommandStarting("mprCategoryOnOff", new ModPlusConnector().AvailProductExternalVersion);
+#if !DEBUG
+            ModPlusAPI.Statistic.SendCommandStarting("mprCategoryOnOff", new ModPlusConnector().AvailProductExternalVersion);
+#endif
             return ShowHideHelper.HideCategory(
                 commandData, BuiltInCategory.OST_LoadCases, "LoadCases", ViewGraphicsOverrideType.AnalyticalModel);
         }
@@ -763,7 +895,9 @@ namespace mprTools.Commands
     {
         public Result Execute(ExternalCommandData commandData, ref string message, ElementSet elements)
         {
-            Statistic.SendCommandStarting("mprCategoryOnOff", new ModPlusConnector().AvailProductExternalVersion);
+#if !DEBUG
+            ModPlusAPI.Statistic.SendCommandStarting("mprCategoryOnOff", new ModPlusConnector().AvailProductExternalVersion);
+#endif
             return ShowHideHelper.HideCategory(
                 commandData, BuiltInCategory.OST_Loads, "Loads", ViewGraphicsOverrideType.AnalyticalModel);
         }
@@ -774,7 +908,9 @@ namespace mprTools.Commands
     {
         public Result Execute(ExternalCommandData commandData, ref string message, ElementSet elements)
         {
-            Statistic.SendCommandStarting("mprCategoryOnOff", new ModPlusConnector().AvailProductExternalVersion);
+#if !DEBUG
+            ModPlusAPI.Statistic.SendCommandStarting("mprCategoryOnOff", new ModPlusConnector().AvailProductExternalVersion);
+#endif
             return ShowHideHelper.HideCategory(commandData, new List<BuiltInCategory>
             {
                 BuiltInCategory.OST_BeamAnalytical,
@@ -820,7 +956,7 @@ namespace mprTools.Commands
                 Category category = doc.Settings.Categories.get_Item(cat);
                 if (category?.get_Visible(doc.ActiveView) == true)
                 {
-                    using (var tr = new Transaction(doc, Language.GetItem(LangItem, "Hide") + " " + Language.GetItem(LangItem, name)))
+                    using (var tr = new Transaction(doc, $"{Language.GetItem(LangItem, "Hide")} {Language.GetItem(LangItem, name)}"))
                     {
                         tr.Start();
                         category.set_Visible(doc.ActiveView, false);
@@ -851,7 +987,7 @@ namespace mprTools.Commands
                 if (BlockedByCurrentViewTemplate(commandData, graphicsOverrideType))
                     return Result.Cancelled;
                 var doc = commandData.Application.ActiveUIDocument.Document;
-                using (var tr = new Transaction(doc, Language.GetItem(LangItem, "Hide") + " " + Language.GetItem(LangItem, name)))
+                using (var tr = new Transaction(doc, $"{Language.GetItem(LangItem, "Hide")} {Language.GetItem(LangItem, name)}"))
                 {
                     tr.Start();
                     foreach (var cat in cats)
@@ -886,7 +1022,7 @@ namespace mprTools.Commands
                 if (BlockedByCurrentViewTemplate(commandData, graphicsOverrideType))
                     return Result.Cancelled;
                 var doc = commandData.Application.ActiveUIDocument.Document;
-                using (var tr = new Transaction(doc, Language.GetItem(LangItem, "Hide") + " " + Language.GetItem(LangItem, name)))
+                using (var tr = new Transaction(doc, $"{Language.GetItem(LangItem, "Hide")} {Language.GetItem(LangItem, name)}"))
                 {
                     tr.Start();
                     foreach (BuiltInCategory cat in Enum.GetValues(typeof(BuiltInCategory)))
@@ -927,7 +1063,7 @@ namespace mprTools.Commands
                 if (BlockedByCurrentViewTemplate(commandData, graphicsOverrideType))
                     return Result.Cancelled;
                 var doc = commandData.Application.ActiveUIDocument.Document;
-                using (var tr = new Transaction(doc, Language.GetItem(LangItem, "Hide") + " " + Language.GetItem(LangItem, name)))
+                using (var tr = new Transaction(doc, $"{Language.GetItem(LangItem, "Hide")} {Language.GetItem(LangItem, name)}"))
                 {
                     tr.Start();
                     foreach (BuiltInCategory cat in Enum.GetValues(typeof(BuiltInCategory)))
@@ -971,7 +1107,7 @@ namespace mprTools.Commands
                 Category category = doc.Settings.Categories.get_Item(cat);
                 if (category?.get_Visible(doc.ActiveView) == false)
                 {
-                    using (var tr = new Transaction(doc, Language.GetItem(LangItem, "Show") + " " + Language.GetItem(LangItem, name)))
+                    using (var tr = new Transaction(doc, $"{Language.GetItem(LangItem, "Show")} {Language.GetItem(LangItem, name)}"))
                     {
                         tr.Start();
                         category.set_Visible(doc.ActiveView, true);
@@ -1002,7 +1138,7 @@ namespace mprTools.Commands
                 if (BlockedByCurrentViewTemplate(commandData, graphicsOverrideType))
                     return Result.Cancelled;
                 var doc = commandData.Application.ActiveUIDocument.Document;
-                using (var tr = new Transaction(doc, Language.GetItem(LangItem, "Hide") + " " + Language.GetItem(LangItem, name)))
+                using (var tr = new Transaction(doc, $"{Language.GetItem(LangItem, "Hide")} {Language.GetItem(LangItem, name)}"))
                 {
                     tr.Start();
                     foreach (var cat in cats)
@@ -1037,7 +1173,7 @@ namespace mprTools.Commands
                 if (BlockedByCurrentViewTemplate(commandData, graphicsOverrideType))
                     return Result.Cancelled;
                 var doc = commandData.Application.ActiveUIDocument.Document;
-                using (var tr = new Transaction(doc, Language.GetItem(LangItem, "Show") + " " + Language.GetItem(LangItem, name)))
+                using (var tr = new Transaction(doc, $"{Language.GetItem(LangItem, "Show")} {Language.GetItem(LangItem, name)}"))
                 {
                     tr.Start();
                     foreach (BuiltInCategory cat in Enum.GetValues(typeof(BuiltInCategory)))
@@ -1078,7 +1214,7 @@ namespace mprTools.Commands
                 if (BlockedByCurrentViewTemplate(commandData, graphicsOverrideType))
                     return Result.Cancelled;
                 var doc = commandData.Application.ActiveUIDocument.Document;
-                using (var tr = new Transaction(doc, Language.GetItem(LangItem, "Show") + " " + Language.GetItem(LangItem, name)))
+                using (var tr = new Transaction(doc, $"{Language.GetItem(LangItem, "Show")} {Language.GetItem(LangItem, name)}"))
                 {
                     tr.Start();
                     foreach (BuiltInCategory cat in Enum.GetValues(typeof(BuiltInCategory)))

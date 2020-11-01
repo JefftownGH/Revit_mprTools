@@ -3,7 +3,6 @@
     using Autodesk.Revit.Attributes;
     using Autodesk.Revit.DB;
     using Autodesk.Revit.UI;
-    using ModPlusAPI;
 
     [Transaction(TransactionMode.Manual)]
     [Regeneration(RegenerationOption.Manual)]
@@ -14,7 +13,9 @@
         /// <inheritdoc />
         public Result Execute(ExternalCommandData commandData, ref string message, ElementSet elements)
         {
-            Statistic.SendCommandStarting("mprCopingDistance", new ModPlusConnector().AvailProductExternalVersion);
+#if !DEBUG
+            ModPlusAPI.Statistic.SendCommandStarting("mprCopingDistance", new ModPlusConnector().AvailProductExternalVersion);
+#endif
             var window = new CopingDistanceSettings(commandData.Application);
             window.ShowDialog();
             return Result.Succeeded;

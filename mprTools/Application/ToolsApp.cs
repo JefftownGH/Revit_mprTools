@@ -7,7 +7,7 @@
     using Autodesk.Revit.UI;
     using Commands.CopingDistance;
     using ModPlusAPI;
-    using ModPlusAPI.Interfaces;
+    using ModPlusAPI.Abstractions;
     using ModPlusAPI.Windows;
 
     public class ToolsApp : IExternalApplication
@@ -121,17 +121,11 @@
             pulldownButtonDataOff.SetContextualHelp(contextualHelp);
 
             // create stacked panel
-#if R2015
-            var stackedItems = panel.AddStackedItems(pbdRebarsOutsideHost, pulldownButtonDataOn, pulldownButtonDataOff);
-            const int onIndex = 1;
-            const int offIndex = 2;
-#else
             var stackedItems = panel.AddStackedItems(pulldownButtonDataOn, pulldownButtonDataOff);
             const int onIndex = 0;
             const int offIndex = 1;
 
             panel.AddStackedItems(pbdGrids, pbdRebarsOutsideHost);
-#endif
 
             // add items to pulldata button
             var commands = new List<string>
@@ -187,7 +181,7 @@
         }
 
         private static PushButtonData GetCategoryOnOffPushButtonData(
-            string name, bool isOn, IModPlusFunctionInterface intF, string assembly)
+            string name, bool isOn, IModPlusPlugin intF, string assembly)
         {
             var showHide = isOn ? "Show" : "Hide";
 
@@ -203,7 +197,7 @@
             return pbd;
         }
 
-        private static BitmapImage GetIconForCategoryOnOff(string name, bool isOn, IModPlusFunctionInterface intF)
+        private static BitmapImage GetIconForCategoryOnOff(string name, bool isOn, IModPlusPlugin intF)
         {
             if (name.Contains("Analytical") || name.Contains("BoundaryConditions") || name.Contains("Load"))
             {

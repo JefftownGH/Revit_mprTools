@@ -1,13 +1,11 @@
 ﻿namespace mprTools.Commands.GridsMode
 {
-#if !R2015
     using System;
     using Autodesk.Revit.Attributes;
     using Autodesk.Revit.DB;
     using Autodesk.Revit.UI;
-    using ModPlusAPI;
     using ModPlusAPI.Windows;
-    
+
     [Transaction(TransactionMode.Manual)]
     [Regeneration(RegenerationOption.Manual)]
     public class GridsModeCommand : IExternalCommand
@@ -16,7 +14,9 @@
         {
             try
             {
-                Statistic.SendCommandStarting("mprGridsMode", new ModPlusConnector().AvailProductExternalVersion);
+#if !DEBUG
+                ModPlusAPI.Statistic.SendCommandStarting("mprGridsMode", new ModPlusConnector().AvailProductExternalVersion);
+#endif
                 var gridsModeWindow = new GridsModeWindow(commandData.Application);
                 gridsModeWindow.ShowDialog();
 
@@ -29,5 +29,4 @@
             }
         }
     }
-#endif
 }

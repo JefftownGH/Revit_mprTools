@@ -2,6 +2,7 @@
 {
     using System;
     using Autodesk.Revit.DB;
+    using ModPlus_Revit.Utils;
     using ModPlusAPI.Windows;
 
     public class CopingDistanceUpdater : IUpdater
@@ -33,7 +34,7 @@
                     try
                     {
                         var parameter = familyInstance.get_Parameter(BuiltInParameter.STRUCTURAL_COPING_DISTANCE);
-                        parameter?.Set(UnitUtils.ConvertToInternalUnits(CopingDistanceCommand.DistanceInMm, DisplayUnitType.DUT_MILLIMETERS));
+                        parameter?.Set(CopingDistanceCommand.DistanceInMm.MmToFt());
                     }
                     catch (Exception exception)
                     {

@@ -4,13 +4,14 @@
     using System.Globalization;
     using System.Linq;
     using System.Windows;
+    using Application;
+    using Application.SelectionFilters;
     using Autodesk.Revit.DB;
     using Autodesk.Revit.UI;
     using Autodesk.Revit.UI.Selection;
+    using ModPlus_Revit.Utils;
     using ModPlusAPI;
     using ModPlusAPI.Windows;
-    using mprTools.Application;
-    using mprTools.Application.SelectionFilters;
 
     public partial class CopingDistanceSettings
     {
@@ -71,8 +72,9 @@
                             {
                                 var el = _uiApplication.ActiveUIDocument.Document.GetElement(reference);
                                 var parameter = el.get_Parameter(BuiltInParameter.STRUCTURAL_COPING_DISTANCE);
-                                parameter?.Set(UnitUtils.ConvertToInternalUnits(distanceValue.Value, DisplayUnitType.DUT_MILLIMETERS));
+                                parameter?.Set(distanceValue.Value.MmToFt());
                             }
+
                             tr.Commit();
                         }
                     }
@@ -113,7 +115,7 @@
                             foreach (var el in elements)
                             {
                                 var parameter = el.get_Parameter(BuiltInParameter.STRUCTURAL_COPING_DISTANCE);
-                                parameter?.Set(UnitUtils.ConvertToInternalUnits(distanceValue.Value, DisplayUnitType.DUT_MILLIMETERS));
+                                parameter?.Set(distanceValue.Value.MmToFt());
                             }
 
                             tr.Commit();
