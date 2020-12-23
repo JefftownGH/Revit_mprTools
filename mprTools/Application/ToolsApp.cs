@@ -82,8 +82,8 @@
             {
                 ToolTip = Language.GetItem(LangItem, "h12"),
                 Image = new BitmapImage(
-                    new Uri("pack://application:,,,/mprTools_" + intF.AvailProductExternalVersion +
-                            ";component/Icons/GridsMode_16x16.png"))
+                    new Uri(
+                        $"pack://application:,,,/mprTools_{intF.AvailProductExternalVersion};component/Icons/GridsMode_16x16.png"))
             };
 
             pbdGrids.SetContextualHelp(contextualHelp);
@@ -97,8 +97,8 @@
             {
                 ToolTip = Language.GetItem(LangItem, "h18"),
                 Image = new BitmapImage(
-                    new Uri("pack://application:,,,/mprTools_" + intF.AvailProductExternalVersion +
-                            ";component/Icons/RebarsWithoutHost_16x16.png"))
+                    new Uri(
+                        $"pack://application:,,,/mprTools_{intF.AvailProductExternalVersion};component/Icons/RebarsWithoutHost_16x16.png"))
             };
             pbdRebarsOutsideHost.SetContextualHelp(contextualHelp);
 
@@ -106,16 +106,16 @@
             var pulldownButtonDataOn = new PulldownButtonData("CategoryOn", Language.GetItem(LangItem, "Show"))
             {
                 Image = new BitmapImage(
-                    new Uri("pack://application:,,,/mprTools_" + intF.AvailProductExternalVersion +
-                            ";component/Icons/CategoryOnOff/CategoryOn_16x16.png")),
+                    new Uri(
+                        $"pack://application:,,,/mprTools_{intF.AvailProductExternalVersion};component/Icons/CategoryOnOff/CategoryOn_16x16.png")),
                 ToolTip = Language.GetItem(LangItem, "ttShow")
             };
             pulldownButtonDataOn.SetContextualHelp(contextualHelp);
             var pulldownButtonDataOff = new PulldownButtonData("CategoryOff", Language.GetItem(LangItem, "Hide"))
             {
                 Image = new BitmapImage(
-                    new Uri("pack://application:,,,/mprTools_" + intF.AvailProductExternalVersion +
-                            ";component/Icons/CategoryOnOff/CategoryOff_16x16.png")),
+                    new Uri(
+                        $"pack://application:,,,/mprTools_{intF.AvailProductExternalVersion};component/Icons/CategoryOnOff/CategoryOff_16x16.png")),
                 ToolTip = Language.GetItem(LangItem, "ttHide")
             };
             pulldownButtonDataOff.SetContextualHelp(contextualHelp);
@@ -131,7 +131,7 @@
             var commands = new List<string>
                 {
                     "Windows", "Doors", "Walls", "Columns", "StructuralFraming", "StructuralFoundation", 
-                    "Components", "Separator",
+                    "Components", "GenericModels", "Separator",
                     "Roofs", "Floors", "Ceilings", "Separator",
                     "Stairs", "StairsRailing", "Ramps", "Separator",
                     "Grids", "Levels", "Sections", "Elevations", "Tags", "ReferencePlanes", "Separator",
@@ -169,9 +169,8 @@
                 assembly,
                 "mprTools.Commands.CopingDistance.CopingDistanceCommand")
             {
-                LargeImage = new BitmapImage(new Uri("pack://application:,,,/mprTools_" +
-                                                     intF.AvailProductExternalVersion +
-                                                     ";component/Icons/CopingDistance_32x32.png")),
+                LargeImage = new BitmapImage(new Uri(
+                    $"pack://application:,,,/mprTools_{intF.AvailProductExternalVersion};component/Icons/CopingDistance_32x32.png")),
                 ToolTip = Language.GetItem(LangItem, "h7")
             };
             copingDistancePushButtonData.SetContextualHelp(contextualHelp);
@@ -204,25 +203,21 @@
                 if (isOn)
                 {
                     return new BitmapImage(new Uri(
-                        $"pack://application:,,,/mprTools_{intF.AvailProductExternalVersion};component/Icons/" +
-                        "CategoryOnOff/AnalyticalOn_16x16.png", UriKind.RelativeOrAbsolute));
+                        $"pack://application:,,,/mprTools_{intF.AvailProductExternalVersion};component/Icons/CategoryOnOff/AnalyticalOn_16x16.png", UriKind.RelativeOrAbsolute));
                 }
 
                 return new BitmapImage(new Uri(
-                    $"pack://application:,,,/mprTools_{intF.AvailProductExternalVersion};component/Icons/" +
-                    "CategoryOnOff/AnalyticalOff_16x16.png", UriKind.RelativeOrAbsolute));
+                    $"pack://application:,,,/mprTools_{intF.AvailProductExternalVersion};component/Icons/CategoryOnOff/AnalyticalOff_16x16.png", UriKind.RelativeOrAbsolute));
             }
 
             if (isOn)
             {
                 return new BitmapImage(new Uri(
-                    $"pack://application:,,,/mprTools_{intF.AvailProductExternalVersion};component/Icons/" +
-                    $"CategoryOnOff/{name}On_16x16.png", UriKind.RelativeOrAbsolute));
+                    $"pack://application:,,,/mprTools_{intF.AvailProductExternalVersion};component/Icons/CategoryOnOff/{name}On_16x16.png", UriKind.RelativeOrAbsolute));
             }
 
             return new BitmapImage(new Uri(
-                $"pack://application:,,,/mprTools_{intF.AvailProductExternalVersion};component/Icons/" +
-                $"CategoryOnOff/{name}Off_16x16.png", UriKind.RelativeOrAbsolute));
+                $"pack://application:,,,/mprTools_{intF.AvailProductExternalVersion};component/Icons/CategoryOnOff/{name}Off_16x16.png", UriKind.RelativeOrAbsolute));
         }
     }
 }

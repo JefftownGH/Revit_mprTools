@@ -65,7 +65,9 @@
                         ModPlusAPI.Language.GetItem(LangItem, "h8") /*"Выберите балки"*/);
                     if (selResult.Any())
                     {
-                        using (var tr = new Transaction(_uiApplication.ActiveUIDocument.Document, ModPlusAPI.Language.GetItem(LangItem, "h9")))
+                        using (var tr = new Transaction(
+                            _uiApplication.ActiveUIDocument.Document,
+                            ModPlusAPI.Language.GetItem(LangItem, "h9")))
                         {
                             tr.Start();
                             foreach (var reference in selResult)
@@ -85,6 +87,10 @@
                         ModPlusAPI.Language.GetItem(LangItem, "h10"), //// "Введено некорректное значение!"
                         MessageBoxIcon.Alert);
                 }
+            }
+            catch (Autodesk.Revit.Exceptions.OperationCanceledException)
+            {
+                // ignore
             }
             catch (Exception exception)
             {
@@ -109,7 +115,9 @@
                         .OfCategory(BuiltInCategory.OST_StructuralFraming).WhereElementIsNotElementType().ToElements();
                     if (elements.Any())
                     {
-                        using (var tr = new Transaction(_uiApplication.ActiveUIDocument.Document, ModPlusAPI.Language.GetItem(LangItem, "h9")))
+                        using (var tr = new Transaction(
+                            _uiApplication.ActiveUIDocument.Document,
+                            ModPlusAPI.Language.GetItem(LangItem, "h9")))
                         {
                             tr.Start();
                             foreach (var el in elements)
@@ -128,6 +136,10 @@
                         ModPlusAPI.Language.GetItem(LangItem, "h10"), //// "Введено некорректное значение!"
                         MessageBoxIcon.Alert);
                 }
+            }
+            catch (Autodesk.Revit.Exceptions.OperationCanceledException)
+            {
+                // ignore
             }
             catch (Exception exception)
             {

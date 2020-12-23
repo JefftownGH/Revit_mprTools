@@ -220,6 +220,19 @@ namespace mprTools.Commands
     }
 
     [Transaction(TransactionMode.Manual)]
+    public class GenericModelsShow : IExternalCommand
+    {
+        public Result Execute(ExternalCommandData commandData, ref string message, ElementSet elements)
+        {
+#if !DEBUG
+            ModPlusAPI.Statistic.SendCommandStarting("mprCategoryOnOff", new ModPlusConnector().AvailProductExternalVersion);
+#endif
+            return ShowHideHelper.ShowCategory(
+                commandData, BuiltInCategory.OST_GenericModel, "GenericModels", ViewGraphicsOverrideType.Model);
+        }
+    }
+
+    [Transaction(TransactionMode.Manual)]
     public class ReferencePlanesShow : IExternalCommand
     {
         public Result Execute(ExternalCommandData commandData, ref string message, ElementSet elements)
@@ -678,6 +691,19 @@ namespace mprTools.Commands
                 BuiltInCategory.OST_Parking,
                 BuiltInCategory.OST_Planting
             }, "Components", ViewGraphicsOverrideType.Model);
+        }
+    }
+
+    [Transaction(TransactionMode.Manual)]
+    public class GenericModelsHide : IExternalCommand
+    {
+        public Result Execute(ExternalCommandData commandData, ref string message, ElementSet elements)
+        {
+#if !DEBUG
+            ModPlusAPI.Statistic.SendCommandStarting("mprCategoryOnOff", new ModPlusConnector().AvailProductExternalVersion);
+#endif
+            return ShowHideHelper.HideCategory(
+                commandData, BuiltInCategory.OST_GenericModel, "GenericModels", ViewGraphicsOverrideType.Model);
         }
     }
 
@@ -1251,9 +1277,11 @@ namespace mprTools.Commands
             ExternalCommandData commandData, ViewGraphicsOverrideType graphicsOverrideType)
         {
             var view = commandData.View;
-            if (!view.IsTemplate && view.ViewTemplateId != ElementId.InvalidElementId &&
+            if (!view.IsTemplate &&
+                view.ViewTemplateId != ElementId.InvalidElementId &&
                 commandData.Application.ActiveUIDocument.Document.GetElement(view.ViewTemplateId) is View template &&
-                !IsNotControlledViewGraphicsOverrideInTemplate(template, graphicsOverrideType))
+                !IsNotControlledViewGraphicsOverrideInTemplate(template, graphicsOverrideType) &&
+                !view.IsInTemporaryViewMode(TemporaryViewMode.TemporaryViewProperties))
             {
                 // Невозможно изменить настройки видимости для категории на текущем виде, так как к виду применен шаблон вида
                 MessageBox.Show(Language.GetItem(LangItem, "m1"), MessageBoxIcon.Close);
