@@ -1,0 +1,147 @@
+﻿<mps:ModPlusWindow x:Class="mprTools.Commands.GridsBubbles.GridsBubblesWindow"
+                   xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                   xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                   xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+                   xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+                   xmlns:mps="https://modplus.org/winfx/xaml/controls"
+                   mc:Ignorable="d"
+                   SizeToContent="WidthAndHeight">
+    <Window.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="pack://application:,,,/ModPlusStyle;component/Styles/Controls.xaml"/>
+            </ResourceDictionary.MergedDictionaries>
+            <XmlDataProvider x:Key="Lang" Source="E:/ModPlus/Languages/en-US.xml" XPath="ModPlus/mprTools" />
+        </ResourceDictionary>
+    </Window.Resources>
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="Auto"/>
+            <ColumnDefinition Width="Auto"/>
+        </Grid.ColumnDefinitions>
+        <Grid.Resources>
+            <ResourceDictionary>
+                <Style TargetType="{x:Type Button}" BasedOn="{StaticResource ModPlusFlatButton}">
+                    <Setter Property="HorizontalAlignment" Value="Stretch"/>
+                    <Setter Property="ToolTipService.InitialShowDelay" Value="200"/>
+                </Style>
+            </ResourceDictionary>
+        </Grid.Resources>
+
+        <!-- Включить кружки в начале -->
+        <GroupBox Grid.Row="0"
+                  Grid.Column="0"
+                  Header="{Binding Source={StaticResource Lang}, XPath=h21}">
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="*"/>
+                </Grid.ColumnDefinitions>
+
+                <Button Grid.Column="0"
+                        Content="{Binding Source={StaticResource Lang}, XPath=h26}"
+                        Name="BtShowBubblesStartOfSelected"
+                        Click="BtShowBubblesStartOfSelected_OnClick"/>
+                
+                <Button Grid.Column="1"
+                        Content="{Binding Source={StaticResource Lang}, XPath=h27}"
+                        Name="BtShowBubblesStartOnView"
+                        Click="BtShowBubblesStartOnView_OnClick"/>
+            </Grid>
+        </GroupBox>
+
+        <!-- Включить кружки в конце -->
+        <GroupBox Grid.Row="0"
+                  Grid.Column="1"
+                  Header="{Binding Source={StaticResource Lang}, XPath=h22}">
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="*"/>
+                </Grid.ColumnDefinitions>
+
+                <Button Grid.Column="0"
+                        Content="{Binding Source={StaticResource Lang}, XPath=h26}"
+                        Name="BtShowBubblesEndOfSelected"
+                        Click="BtShowBubblesEndOfSelected_OnClick"/>
+                
+                <Button Grid.Column="1"
+                        Content="{Binding Source={StaticResource Lang}, XPath=h27}"
+                        Name="BtShowBubblesEndOnView"
+                        Click="BtShowBubblesEndOnView_OnClick"/>
+            </Grid>
+        </GroupBox>
+
+        <!-- Отключить кружки в начале -->
+        <GroupBox Grid.Row="1"
+                  Grid.Column="0"
+                  Header="{Binding Source={StaticResource Lang}, XPath=h23}">
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="*"/>
+                </Grid.ColumnDefinitions>
+
+                <Button Grid.Column="0"
+                        Content="{Binding Source={StaticResource Lang}, XPath=h26}"
+                        Name="BtHideBubblesStartOfSelected"
+                        Click="BtHideBubblesStartOfSelected_OnClick"/>
+                
+                <Button Grid.Column="1"
+                        Content="{Binding Source={StaticResource Lang}, XPath=h27}"
+                        Name="BtHideBubblesStartOnView"
+                        Click="BtHideBubblesStartOnView_OnClick"/>
+            </Grid>
+        </GroupBox>
+
+        <!-- Отключить кружки в конце -->
+        <GroupBox Grid.Row="1"
+                  Grid.Column="1"
+                  Header="{Binding Source={StaticResource Lang}, XPath=h24}">
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="*"/>
+                </Grid.ColumnDefinitions>
+
+                <Button Grid.Column="0"
+                        Content="{Binding Source={StaticResource Lang}, XPath=h26}"
+                        Name="BtHideBubblesEndOfSelected"
+                        Click="BtHideBubblesEndOfSelected_OnClick"/>
+                
+                <Button Grid.Column="1"
+                        Content="{Binding Source={StaticResource Lang}, XPath=h27}"
+                        Name="BtHideBubblesEndOnView"
+                        Click="BtHideBubblesEndOnView_OnClick"/>
+            </Grid>
+        </GroupBox>
+
+        <!-- Инверсия отображение кружков -->
+        <GroupBox Grid.Row="2"
+                  Grid.Column="0"
+                  Grid.ColumnSpan="2"
+                  Header="{Binding Source={StaticResource Lang}, XPath=h25}">
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="*"/>
+                </Grid.ColumnDefinitions>
+
+                <Button Grid.Column="0"
+                        Content="{Binding Source={StaticResource Lang}, XPath=h26}"
+                        Name="BtInverseBubblesOfSelected"
+                        Click="BtInverseBubblesOfSelected_OnClick"/>
+                
+                <Button Grid.Column="1"
+                        Content="{Binding Source={StaticResource Lang}, XPath=h27}"
+                        Name="BtInverseBubblesOnView"
+                        Click="BtInverseBubblesOnView_OnClick"/>
+            </Grid>
+        </GroupBox>
+    </Grid>
+</mps:ModPlusWindow>

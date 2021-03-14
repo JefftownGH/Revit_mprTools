@@ -43,7 +43,9 @@
                 // create ribbon tab
                 CreateRibbonTab(application);
 
-                ModPlus_Revit.App.RibbonBuilder.HideTextOfSmallButtons("ModPlus", new List<string> { "Grids mode", "Rebars outside host" });
+                ModPlus_Revit.App.RibbonBuilder.HideTextOfSmallButtons(
+                    "ModPlus", 
+                    new List<string> { "Grids mode", "Grids bubbles", "Rebars outside host", "Pick Annotations" });
             }
             catch (Exception exception)
             {
@@ -74,7 +76,7 @@
             var contextualHelp = new ContextualHelp(ContextualHelpType.Url, ModPlus_Revit.App.RibbonBuilder.GetHelpUrl(intF.Name));
 
             // grids mode
-            var pbdGrids = new PushButtonData(
+            var pbdGridsMode = new PushButtonData(
                 "Grids mode",
                 ModPlus_Revit.App.RibbonBuilder.ConvertLName(Language.GetItem(LangItem, "h11")),
                 Assembly.GetExecutingAssembly().Location,
@@ -85,8 +87,21 @@
                     new Uri(
                         $"pack://application:,,,/mprTools_{intF.AvailProductExternalVersion};component/Icons/GridsMode_16x16.png"))
             };
-
-            pbdGrids.SetContextualHelp(contextualHelp);
+            pbdGridsMode.SetContextualHelp(contextualHelp);
+            
+            // Grids bubbles
+            var pbdGridsBubbles = new PushButtonData(
+                "Grids bubbles",
+                ModPlus_Revit.App.RibbonBuilder.ConvertLName(Language.GetItem(LangItem, "h19")),
+                Assembly.GetExecutingAssembly().Location,
+                "mprTools.Commands.GridsBubbles.GridsBubblesCommand")
+            {
+                ToolTip = Language.GetItem(LangItem, "h20"),
+                Image = new BitmapImage(
+                    new Uri(
+                        $"pack://application:,,,/mprTools_{intF.AvailProductExternalVersion};component/Icons/GridsBubbles_16x16.png"))
+            };
+            pbdGridsBubbles.SetContextualHelp(contextualHelp);
 
             // Rebars outside host
             var pbdRebarsOutsideHost = new PushButtonData(
@@ -101,8 +116,10 @@
                         $"pack://application:,,,/mprTools_{intF.AvailProductExternalVersion};component/Icons/RebarsWithoutHost_16x16.png"))
             };
             pbdRebarsOutsideHost.SetContextualHelp(contextualHelp);
+            
+            panel.AddStackedItems(pbdGridsMode, pbdGridsBubbles, pbdRebarsOutsideHost);
 
-            // CategoryOnOff
+            // CategoryOn
             var pulldownButtonDataOn = new PulldownButtonData("CategoryOn", Language.GetItem(LangItem, "Show"))
             {
                 Image = new BitmapImage(
@@ -111,6 +128,8 @@
                 ToolTip = Language.GetItem(LangItem, "ttShow")
             };
             pulldownButtonDataOn.SetContextualHelp(contextualHelp);
+            
+            // CategoryOn
             var pulldownButtonDataOff = new PulldownButtonData("CategoryOff", Language.GetItem(LangItem, "Hide"))
             {
                 Image = new BitmapImage(
@@ -119,18 +138,31 @@
                 ToolTip = Language.GetItem(LangItem, "ttHide")
             };
             pulldownButtonDataOff.SetContextualHelp(contextualHelp);
+            
+            // Pick annotations
+            var pbdPickAnnotations = new PushButtonData(
+                "Pick Annotations",
+                ModPlus_Revit.App.RibbonBuilder.ConvertLName(Language.GetItem(LangItem, "h29")),
+                Assembly.GetExecutingAssembly().Location,
+                "mprTools.Commands.PickAnnotationsCommand")
+            {
+                ToolTip = Language.GetItem(LangItem, "h30"),
+                Image = new BitmapImage(
+                    new Uri(
+                        $"pack://application:,,,/mprTools_{intF.AvailProductExternalVersion};component/Icons/PickAnnotations_16x16.png"))
+            };
+            pbdPickAnnotations.SetContextualHelp(contextualHelp);
 
             // create stacked panel
-            var stackedItems = panel.AddStackedItems(pulldownButtonDataOn, pulldownButtonDataOff);
+            var stackedItems = panel.AddStackedItems(pulldownButtonDataOn, pulldownButtonDataOff, pbdPickAnnotations);
+            
             const int onIndex = 0;
             const int offIndex = 1;
-
-            panel.AddStackedItems(pbdGrids, pbdRebarsOutsideHost);
 
             // add items to pulldata button
             var commands = new List<string>
                 {
-                    "Windows", "Doors", "Walls", "Columns", "StructuralFraming", "StructuralFoundation", 
+                    "Windows", "Doors", "Walls", "Columns", "StructuralFraming", "StructuralFoundation", "Reinforcement",
                     "Components", "GenericModels", "Separator",
                     "Roofs", "Floors", "Ceilings", "Separator",
                     "Stairs", "StairsRailing", "Ramps", "Separator",
@@ -140,6 +172,7 @@
                     "WallFoundationAnalytical", "WallAnalytical", "BoundaryConditions", "InternalLoads",
                     "LoadCases", "Loads"
                 };
+            
             if (stackedItems[onIndex] is PulldownButton pdbOn)
             {
                 commands.ForEach(c =>

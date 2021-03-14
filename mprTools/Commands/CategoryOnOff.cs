@@ -271,6 +271,23 @@ namespace mprTools.Commands
         }
     }
 
+    [Transaction(TransactionMode.Manual)]
+    public class ReinforcementShow : IExternalCommand
+    {
+        public Result Execute(ExternalCommandData commandData, ref string message, ElementSet elements)
+        {
+#if !DEBUG
+            ModPlusAPI.Statistic.SendCommandStarting("mprCategoryOnOff", new ModPlusConnector().AvailProductExternalVersion);
+#endif
+            return ShowHideHelper.ShowCategory(commandData, new List<BuiltInCategory>
+            {
+                BuiltInCategory.OST_Rebar,
+                BuiltInCategory.OST_PathRein,
+                BuiltInCategory.OST_AreaRein
+            }, "Reinforcement", ViewGraphicsOverrideType.Model);
+        }
+    }
+
     #region Analytical
 
     [Transaction(TransactionMode.Manual)]
@@ -742,6 +759,23 @@ namespace mprTools.Commands
 #endif
             return ShowHideHelper.HideCategory(
                 commandData, BuiltInCategory.OST_StructuralFoundation, "StructuralFoundation", ViewGraphicsOverrideType.Model);
+        }
+    }
+    
+    [Transaction(TransactionMode.Manual)]
+    public class ReinforcementHide : IExternalCommand
+    {
+        public Result Execute(ExternalCommandData commandData, ref string message, ElementSet elements)
+        {
+#if !DEBUG
+            ModPlusAPI.Statistic.SendCommandStarting("mprCategoryOnOff", new ModPlusConnector().AvailProductExternalVersion);
+#endif
+            return ShowHideHelper.HideCategory(commandData, new List<BuiltInCategory>
+            {
+                BuiltInCategory.OST_Rebar,
+                BuiltInCategory.OST_PathRein,
+                BuiltInCategory.OST_AreaRein
+            }, "Reinforcement", ViewGraphicsOverrideType.Model);
         }
     }
 

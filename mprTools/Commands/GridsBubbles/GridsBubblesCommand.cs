@@ -1,4 +1,4 @@
-﻿namespace mprTools.Commands.GridsMode
+﻿namespace mprTools.Commands.GridsBubbles
 {
     using System;
     using Autodesk.Revit.Attributes;
@@ -7,11 +7,11 @@
     using ModPlusAPI.Windows;
 
     /// <summary>
-    /// Команда "Режим осей"
+    /// Команда "Видимость кружков"
     /// </summary>
     [Transaction(TransactionMode.Manual)]
     [Regeneration(RegenerationOption.Manual)]
-    public class GridsModeCommand : IExternalCommand
+    public class GridsBubblesCommand : IExternalCommand
     {
         /// <inheritdoc/>
         public Result Execute(ExternalCommandData commandData, ref string message, ElementSet elements)
@@ -19,9 +19,9 @@
             try
             {
 #if !DEBUG
-                ModPlusAPI.Statistic.SendCommandStarting("mprGridsMode", new ModPlusConnector().AvailProductExternalVersion);
+                ModPlusAPI.Statistic.SendCommandStarting("mprGridsBubbles", new ModPlusConnector().AvailProductExternalVersion);
 #endif
-                var gridsModeWindow = new GridsModeWindow(commandData.Application);
+                var gridsModeWindow = new GridsBubblesWindow(commandData.Application);
                 gridsModeWindow.ShowDialog();
 
                 return Result.Succeeded;

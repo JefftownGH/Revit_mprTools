@@ -1,7 +1,7 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk.WindowsDesktop">
 
    <PropertyGroup>
-    <Version>2.5.4.0</Version>
+    <Version>2.8.0.0</Version>
     <RootNamespace>mprTools</RootNamespace>
     <AssemblyName>$(RootNamespace)</AssemblyName>
   </PropertyGroup>
@@ -64,31 +64,31 @@
     <When Condition="'$(Configuration)'=='R2017'">
       <ItemGroup>
         <PackageReference Include="ModPlus.Revit.API.2017" Version="1.0.0" ExcludeAssets="runtime" />
-        <PackageReference Include="ModPlus.Revit.Module.2017" Version="6.0.0" ExcludeAssets="runtime" />
+        <PackageReference Include="ModPlus.Revit.Module.2017" Version="6.4.2" ExcludeAssets="runtime" />
       </ItemGroup>
     </When>
     <When Condition="'$(Configuration)'=='R2018'">
       <ItemGroup>
         <PackageReference Include="ModPlus.Revit.API.2018" Version="1.0.0" ExcludeAssets="runtime" />
-        <PackageReference Include="ModPlus.Revit.Module.2018" Version="6.0.0" ExcludeAssets="runtime" />
+        <PackageReference Include="ModPlus.Revit.Module.2018" Version="6.4.2" ExcludeAssets="runtime" />
       </ItemGroup>
     </When>
     <When Condition="'$(Configuration)'=='R2019'">
       <ItemGroup>
         <PackageReference Include="ModPlus.Revit.API.2019" Version="1.0.0" ExcludeAssets="runtime" />
-        <PackageReference Include="ModPlus.Revit.Module.2019" Version="6.0.0" ExcludeAssets="runtime" />
+        <PackageReference Include="ModPlus.Revit.Module.2019" Version="6.4.2" ExcludeAssets="runtime" />
       </ItemGroup>
     </When>
     <When Condition="'$(Configuration)'=='R2020'">
       <ItemGroup>
         <PackageReference Include="ModPlus.Revit.API.2020" Version="1.0.0" ExcludeAssets="runtime" />
-        <PackageReference Include="ModPlus.Revit.Module.2020" Version="6.0.0" ExcludeAssets="runtime" />
+        <PackageReference Include="ModPlus.Revit.Module.2020" Version="6.4.2" ExcludeAssets="runtime" />
       </ItemGroup>
     </When>
     <When Condition="'$(Configuration)'=='R2021' or '$(Configuration)'=='Debug'">
       <ItemGroup>
         <PackageReference Include="ModPlus.Revit.API.2021" Version="1.0.0" ExcludeAssets="runtime" />
-        <PackageReference Include="ModPlus.Revit.Module.2021" Version="6.0.0" ExcludeAssets="runtime" />
+        <PackageReference Include="ModPlus.Revit.Module.2021" Version="6.4.2" ExcludeAssets="runtime" />
       </ItemGroup>
     </When>
   </Choose>
@@ -96,12 +96,16 @@
   <ItemGroup>
     <None Remove="Icons\CategoryOnOff\GenericModelsOff_16x16.png" />
     <None Remove="Icons\CategoryOnOff\GenericModelsOn_16x16.png" />
+    <None Remove="Icons\CategoryOnOff\ReinforcementOff_16x16.png" />
+    <None Remove="Icons\CategoryOnOff\ReinforcementOn_16x16.png" />
+    <None Remove="Icons\GridsBubbles_16x16.png" />
+    <None Remove="Icons\PickAnnotations_16x16.png" />
   </ItemGroup>
 
   <ItemGroup>
     <PackageReference Include="JetBrains.Annotations" Version="2020.1.0" ExcludeAssets="runtime" />
-    <PackageReference Include="ModPlusAPI" Version="5.0.0" ExcludeAssets="runtime" />
-    <PackageReference Include="ModPlusStyle" Version="3.7.0" ExcludeAssets="runtime" />
+    <PackageReference Include="ModPlusAPI" Version="6.9.0" ExcludeAssets="runtime" />
+    <PackageReference Include="ModPlusStyle" Version="3.8.0" ExcludeAssets="runtime" />
     <PackageReference Include="StyleCop.Analyzers" Version="1.1.118">
       <PrivateAssets>all</PrivateAssets>
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
@@ -135,6 +139,8 @@
     <Resource Include="Icons\CategoryOnOff\RampsOn_16x16.png" />
     <Resource Include="Icons\CategoryOnOff\ReferencePlanesOff_16x16.png" />
     <Resource Include="Icons\CategoryOnOff\ReferencePlanesOn_16x16.png" />
+    <Resource Include="Icons\CategoryOnOff\ReinforcementOff_16x16.png" />
+    <Resource Include="Icons\CategoryOnOff\ReinforcementOn_16x16.png" />
     <Resource Include="Icons\CategoryOnOff\RoofsOff_16x16.png" />
     <Resource Include="Icons\CategoryOnOff\RoofsOn_16x16.png" />
     <Resource Include="Icons\CategoryOnOff\SectionsOff_16x16.png" />
@@ -154,7 +160,9 @@
     <Resource Include="Icons\CategoryOnOff\WindowsOff_16x16.png" />
     <Resource Include="Icons\CategoryOnOff\WindowsOn_16x16.png" />
     <Resource Include="Icons\CopingDistance_32x32.png" />
+    <Resource Include="Icons\GridsBubbles_16x16.png" />
     <Resource Include="Icons\GridsMode_16x16.png" />
+    <Resource Include="Icons\PickAnnotations_16x16.png" />
     <Resource Include="Icons\RebarsWithoutHost_16x16.png" />
     <Resource Include="Resources\mprTools_32x32.png" />
   </ItemGroup>
