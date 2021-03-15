@@ -53,7 +53,8 @@
                 return elem.Category != null &&
                        elem.Category.CategoryType == CategoryType.Annotation &&
                        elem.Category.Id.IntegerValue is int catId &&
-                       (IsTag(elem.Category) ||
+                       (elem is FamilyInstance ||
+                        IsTag(elem.Category) ||
                         IsDimension(elem.Category) || 
                         ((BuiltInCategory)catId).ToString().Contains("Text"));
             }
