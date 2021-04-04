@@ -32,8 +32,12 @@
                 {
                     selection.SetElementIds(ids);
                 }
-                
+
                 return Result.Succeeded;
+            }
+            catch (Autodesk.Revit.Exceptions.OperationCanceledException)
+            {
+                return Result.Cancelled;
             }
             catch (Exception exception)
             {
@@ -51,12 +55,9 @@
             public bool AllowElement(Element elem)
             {
                 return elem.Category != null &&
-                       elem.Category.CategoryType == CategoryType.Annotation &&
-                       elem.Category.Id.IntegerValue is int catId &&
-                       (elem is FamilyInstance ||
-                        IsTag(elem.Category) ||
-                        IsDimension(elem.Category) || 
-                        ((BuiltInCategory)catId).ToString().Contains("Text"));
+                       ((elem.Category.CategoryType == CategoryType.Annotation && elem.Category.Id.IntegerValue is int catId &&
+                       (elem is FamilyInstance || IsTag(elem.Category) || IsDimension(elem.Category) || ((BuiltInCategory)catId).ToString().Contains("Text"))) ||
+                       elem.Category.Id.IntegerValue == (int)BuiltInCategory.OST_DetailComponents);
             }
 
             /// <inheritdoc/>
