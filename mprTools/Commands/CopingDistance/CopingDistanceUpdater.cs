@@ -29,7 +29,7 @@
             foreach (var elementId in data.GetModifiedElementIds())
             {
                 if (doc.GetElement(elementId) is FamilyInstance familyInstance &&
-                    familyInstance.Category.Id.IntegerValue == (int) BuiltInCategory.OST_StructuralFraming)
+                    familyInstance.Category.Id.IntegerValue == (int)BuiltInCategory.OST_StructuralFraming)
                 {
                     try
                     {
